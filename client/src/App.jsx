@@ -1,9 +1,25 @@
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import Home from "./pages/home";
+import CreateNew from "./pages/CreateNew";
+import Edit from "./pages/Edit";
+
 const App = () => {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/new",
+      element: <CreateNew />,
+    },
+    {
+      path: "/edit/:id",
+      element: <Edit />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 export default App;
