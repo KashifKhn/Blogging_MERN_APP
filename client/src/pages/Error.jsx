@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
+import { Link } from "react-router-dom";
 
 const Error = () => {
   return (
@@ -29,13 +30,13 @@ const Error = () => {
         </div>
         <p className="mt-4 text-gray-600">
           Let's get you back{" "}
-          <a
-            href="/"
+          <Link
+            to="/"
             class="mt-4 inline-block rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600"
           >
             {" "}
             Go back to Home{" "}
-          </a>
+          </Link>
           .
         </p>
       </div>

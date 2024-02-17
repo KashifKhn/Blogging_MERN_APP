@@ -22,21 +22,20 @@ const Header = () => {
             style={{ maxHeight: "300px" }}
             navbarScroll
           >
-            <Nav.Link>
+            <div className="nav-link">
               <NavLink
                 to="/"
                 className={
                   ("hover:text-black transition-all duration-100",
-                  (isActive) =>
-                  isActive ? "underline" : "")
+                  (isActive) => (isActive ? "underline" : ""))
                 }
               >
                 Home
               </NavLink>
-            </Nav.Link>
-            <Nav.Link>
+            </div>
+            <div className="nav-link">
               <NavLink to="/new">Create New</NavLink>
-            </Nav.Link>
+            </div>
           </Nav>
           <Form className="d-flex">
             <Form.Control
