@@ -8,8 +8,8 @@ const MainLayouts = () => {
   return (
     <>
       <Header />
-      <main className="w-full h-screen">
-        <Container className="mt-4">
+      <main>
+        <Container className="my-8">
           <Outlet />
         </Container>
       </main>

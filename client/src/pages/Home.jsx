@@ -1,16 +1,10 @@
 import React from "react";
-import useFetchBlog from "../Hooks/useFetchBlog";
+import BlogCardList from "../components/HomePage/BlogCardList";
 
 const Home = () => {
-  const { blogs, isLoading, error } = useFetchBlog();
-  console.log(blogs)
-  
-
   return (
     <div>
-      <div>
-        <h1>Home</h1>
-      </div>
+      <BlogCardList />
     </div>
   );
 };
