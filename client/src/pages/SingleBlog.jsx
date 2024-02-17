@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import SinglePageCard from "../components/SinglePage/SinglePageCard";
 
 const SingleBlog = () => {
   return (
-    <div>SingleBlog</div>
-  )
-}
+    <div>
+      <SinglePageCard />
+    </div>
+  );
+};
 
-export default SingleBlog
+export default SingleBlog;
