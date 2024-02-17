@@ -1,26 +1,17 @@
+import "dotenv/config";
 import express from "express";
-import { connect } from "mongoose";
+import connectDB from "./config/connectDB.js";
+import blogRouter from "./routers/blog.router.js";
+
 const app = express();
 const PORT = process.env.PORT;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-main()
-  .then(() => console.log("DB connected"))
-  .catch((err) => console.log(err));
+connectDB();
 
-async function main() {
-  await connect(`${process.env.DB_ENDPOINT}`);
-}
-
-app.get("/", (req, res) => {
-  res.send("Got a GET request");
-});
-
-app.post("/", (req, res) => {
-  res.send("Got a POST request");
-});
+app.use("/api/blogs", blogRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

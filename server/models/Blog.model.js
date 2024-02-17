@@ -1,18 +1,23 @@
-import { Schema, Model } from "mongoose";
+import { Schema, model } from "mongoose";
 
-const blogSchema = new Schema({
-  title: {
-    type: String,
+const blogSchema = new Schema(
+  {
+    title: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    imgUrl: {
+      type: String,
+    },
+    content: {
+      type: String,
+    },
   },
-  description: {
-    type: String,
-  },
-  imgUrl: {
-    type: String,
-  },
-  content: {
-    type: String,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
-export const Blog = Model("Blog", blogSchema);
+export const Blog = model("Blog", blogSchema);
