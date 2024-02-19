@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import NewForm from "../components/CreateNew/NewForm";
 
 const CreateNew = () => {
   return (
-    <div>CreateNew</div>
-  )
-}
+    <div>
+      <NewForm />
+    </div>
+  );
+};
 
-export default CreateNew
+export default CreateNew;

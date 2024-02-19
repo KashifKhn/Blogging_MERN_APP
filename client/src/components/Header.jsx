@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <Navbar sticky="top" expand="lg" className="bg-body-tertiary border-b-2">
+    <Navbar sticky="top" expand="md" className="bg-body-tertiary border-b-2">
       <Container>
         <Navbar.Brand className="mr-16">
           <NavLink to="/" className="text-3xl font-bold text-red-500">

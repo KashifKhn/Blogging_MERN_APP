@@ -9,9 +9,9 @@ import {
 
 const router = Router();
 
-router.get("", getBlogs);
+router.get("/", getBlogs);
 router.get("/:id", getBlog);
-router.post("/new", createBlog);
+router.post("/", createBlog);
 router.put("/edit/:id", updateBlog);
 router.delete("/:id", deleteBlog);
 
