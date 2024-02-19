@@ -4,7 +4,7 @@ import useFetchBlogs from "../../Hooks/useFetchBlogs";
 
 const BlogCardList = () => {
   const { blogs, isLoading, error } = useFetchBlogs();
-  console.log(blogs);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
