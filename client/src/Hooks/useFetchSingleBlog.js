@@ -8,6 +8,7 @@ const useFetchSingleBlog = (id) => {
 
   const fetchData = useCallback(async () => {
     const abortCont = new AbortController();
+    setIsLoading(true);
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_API_ENDPOINT}/${id}`,

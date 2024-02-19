@@ -37,11 +37,12 @@ const createBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
+    console.log(blog)
+    
     blog.title = req.body.title;
     blog.description = req.body.description;
     blog.imgUrl = req.body.imgUrl;
     blog.content = req.body.content;
-
     const updatedBlog = await blog.save();
     res.status(200).json(updatedBlog);
   } catch (err) {

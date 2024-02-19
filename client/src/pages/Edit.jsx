@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import EditForm from "../components/EditPage/EditForm";
 
 const Edit = () => {
   return (
-    <div>Edit</div>
-  )
-}
+    <div>
+      <EditForm />
+    </div>
+  );
+};
 
-export default Edit
+export default Edit;
