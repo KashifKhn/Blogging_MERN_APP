@@ -85,9 +85,8 @@ function NewForm() {
         controlId="content"
       >
         <Editor
-          className="h-96"
           value={content}
-          onChange={setContent}
+          handleChange={setContent}
         />
       </Form.Group>
       <button

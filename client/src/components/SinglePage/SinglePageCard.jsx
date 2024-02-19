@@ -1,5 +1,6 @@
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
+import parse from "html-react-parser";
 import useFetchSingleBlog from "../../Hooks/useFetchSingleBlog";
 import useFetchDeleteBlog from "../../Hooks/useFetchDeleteBlog";
 
@@ -12,7 +13,10 @@ const SinglePageCard = () => {
     <Card className="w-full border-0">
       <Card.Header className="mb-4 border-0">
         <Card.Title>
-          <button className="btn btn-danger" onClick={handleDelete}>
+          <button
+            className="btn btn-danger"
+            onClick={handleDelete}
+          >
             delete
           </button>
         </Card.Title>
@@ -23,11 +27,15 @@ const SinglePageCard = () => {
         </Card.Title>
         <Card.Text className="text-[1.5rem] my-8">{blog.description}</Card.Text>
       </Card.Header>
-      <Card.Img variant="top" className="rounded-xl" src={blog.imgUrl} />
+      <Card.Img
+        variant="top"
+        className="rounded-xl"
+        src={blog.imgUrl}
+      />
       <Card.Body>
-        <Card.Text className="text-[1.5rem] leading-loose tracking-wide text-justify">
-          {blog.content}
-        </Card.Text>
+        <div className="text-[1.5rem] leading-loose tracking-wide text-justify">
+          {parse(`${blog.content}`)}
+        </div>
       </Card.Body>
     </Card>
   );

@@ -5,6 +5,7 @@ import Edit from "./pages/Edit";
 import SingleBlog from "./pages/SingleBlog";
 import Error from "./pages/Error";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-quill/dist/quill.snow.css";
 import MainLayouts from "./Layouts/MainLayouts";
 
 const App = () => {
