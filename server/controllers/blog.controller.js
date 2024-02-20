@@ -19,12 +19,7 @@ const getBlog = async (req, res) => {
 };
 
 const createBlog = async (req, res) => {
-  const blog = new Blog({
-    title: req.body.title,
-    description: req.body.description,
-    imgUrl: req.body.imgUrl,
-    content: req.body.content,
-  });
+  const blog = new Blog(req.body);
 
   try {
     const newBlog = await blog.save();
@@ -37,12 +32,10 @@ const createBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
-    console.log(blog)
-    
     blog.title = req.body.title;
-    blog.description = req.body.description;
     blog.imgUrl = req.body.imgUrl;
-    blog.content = req.body.content;
+    blog.post = req.body.post;
+    blog.postFormat = req.body.postFormat;
     const updatedBlog = await blog.save();
     res.status(200).json(updatedBlog);
   } catch (err) {

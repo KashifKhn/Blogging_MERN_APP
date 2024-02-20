@@ -5,14 +5,15 @@ const blogSchema = new Schema(
     title: {
       type: String,
     },
-    description: {
-      type: String,
-    },
     imgUrl: {
       type: String,
     },
-    content: {
+    post: {
       type: String,
+    },
+    postFormat: {
+      type: String,
+      enum: ["editor", "markdown"],
     },
   },
   {

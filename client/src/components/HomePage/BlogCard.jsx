@@ -27,13 +27,11 @@ const BlogCard = ({ blog }) => {
                 alt="profile picture"
               />
             </div>
-            <div className="flex gap-4"> 
+            <div className="flex gap-4">
               <p className="ms-2 text-sm text-black dark:text-gray-400 ">
                 Author Name
               </p>
-              <p className="text-gray-500">
-                {timeAgo}{" "}
-              </p>
+              <p className="text-gray-500">{timeAgo} </p>
             </div>
           </figcaption>
         </Card.Header>
@@ -46,14 +44,13 @@ const BlogCard = ({ blog }) => {
           </div>
           <div className="md:w-3/4">
             <h3 className="text-[2rem] font-bold mb-3">{blog.title}</h3>
-            <Card.Text className="mb-3">{blog.description}</Card.Text>
             <div className="flex gap-4 max-sm:flex-col">
               <p>
                 <span className="bg-gray-200 text-black text-xs font-medium me-2 px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">
                   Programming Coding
                 </span>
               </p>
-              <p>{findReadTime(blog.content)} min read</p>
+              <p>{findReadTime(blog.post)} min read</p>
             </div>
           </div>
         </Card.Body>

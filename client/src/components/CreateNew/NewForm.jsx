@@ -7,12 +7,13 @@ const NewForm = () => {
     title: "",
     description: "",
     imgUrl: "",
+    postFormat: "editor",
   });
-  const [content, setContent] = useState("");
-  const { handleSubmit } = useFetchAddBlog({ ...form, content });
-
+  const [post, setPost] = useState("");
+  const { handleSubmit } = useFetchAddBlog({ ...form, post });
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setForm((prevState) => {
       return {
         ...prevState,
@@ -26,8 +27,8 @@ const NewForm = () => {
       <CommonForm
         handleChange={handleChange}
         form={form}
-        content={content}
-        setContent={setContent}
+        post={post}
+        setPost={setPost}
         handleSubmit={handleSubmit}
       />
     </div>
