@@ -10,11 +10,11 @@ const EditForm = () => {
 
   const [form, setForm] = useState({
     title: "",
-    description: "",
     imgUrl: "",
+    postFormat: "editor",
   });
-  const [content, setContent] = useState("");
-  const { handleUpdate } = useFetchUpdateBlog(id, { ...form, content });
+  const [post, setPost] = useState("");
+  const { handleUpdate } = useFetchUpdateBlog(id, { ...form, post: post });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,10 +30,10 @@ const EditForm = () => {
     if (blog) {
       setForm({
         title: blog.title,
-        description: blog.description,
         imgUrl: blog.imgUrl,
+        postFormat: blog.postFormat,
       });
-      setContent(blog.content);
+      setPost(blog.post);
     }
   }, [blog]);
 
@@ -44,9 +44,10 @@ const EditForm = () => {
       <CommonForm
         handleChange={handleChange}
         form={form}
-        content={content}
-        setContent={setContent}
+        post={post}
+        setPost={setPost}
         handleSubmit={handleUpdate}
+        parentComp="edit"
       />
     </div>
   );

@@ -1,8 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Form from "react-bootstrap/Form";
 import Editor from "./Editor";
 
-const CommonForm = ({ form, handleChange, post, setPost, handleSubmit }) => {
+const CommonForm = ({
+  form,
+  handleChange,
+  post,
+  setPost,
+  handleSubmit,
+  parentComp,
+}) => {
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current.focus();
@@ -26,21 +33,6 @@ const CommonForm = ({ form, handleChange, post, setPost, handleSubmit }) => {
           onChange={handleChange}
           required={true}
           value={form.title}
-        />
-      </Form.Group>
-      <Form.Group
-        className="mb-3"
-        controlId="description"
-      >
-        <Form.Label>Short Description</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={3}
-          name="description"
-          placeholder="Catchy Line for Your Idea"
-          onChange={handleChange}
-          required
-          value={form.description}
         />
       </Form.Group>
       <Form.Group
@@ -113,7 +105,7 @@ const CommonForm = ({ form, handleChange, post, setPost, handleSubmit }) => {
         type="submit"
         className="btn btn-primary bg-blue-700"
       >
-        Share New Idea
+        {parentComp === "edit" ? "Update Ideas" : "Share Your Creative Ideas"}
       </button>
     </Form>
   );

@@ -30,6 +30,7 @@ const NewForm = () => {
         post={post}
         setPost={setPost}
         handleSubmit={handleSubmit}
+        parentComp="new"
       />
     </div>
   );
