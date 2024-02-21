@@ -2,6 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { convertHtml, convertMarkdown } from "../../utils/blogConverter";
 
 const BlogCard = ({ blog }) => {
   const timeAgo = moment(blog.createdAt).fromNow();
@@ -44,6 +45,11 @@ const BlogCard = ({ blog }) => {
           </div>
           <div className="md:w-3/4">
             <h3 className="text-[2rem] font-bold mb-3">{blog.title}</h3>
+            <p className="text-gray-950 dark:text-gray-300 line-clamp-3 my-2">
+              {blog.postFormat === "editor"
+                ? convertHtml(blog.post)
+                : convertMarkdown(blog.post)}
+            </p>
             <div className="flex gap-4 max-sm:flex-col">
               <p>
                 <span className="bg-gray-200 text-black text-xs font-medium me-2 px-3 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300">

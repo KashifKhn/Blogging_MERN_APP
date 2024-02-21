@@ -1,25 +1,11 @@
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
-import parse from "html-react-parser";
 import useFetchSingleBlog from "../../Hooks/useFetchSingleBlog";
 import Buttons from "./Buttons";
-import DOMPurify from "dompurify";
-import Markdown from "react-markdown";
-
+import { convertHtml, convertMarkdown } from "../../utils/blogConverter";
 const SinglePageCard = () => {
   const { id } = useParams();
   const { blog } = useFetchSingleBlog(id);
-
-  const purify = (html) => {
-    const cleanHtml = DOMPurify.sanitize(html);
-    console.log(cleanHtml);
-
-    return cleanHtml;
-  };
-
-  const createMarkup = (html) => {
-    return parse(purify(html));
-  };
 
   return (
     <Card className="w-full border-0">
@@ -34,20 +20,13 @@ const SinglePageCard = () => {
         className="rounded-xl"
         src={blog.imgUrl}
       />
-      {blog.postFormat === "editor" && (
-        <Card.Body>
-          <div className={`default-style max-w-[1000px] mx-auto`}>
-            {createMarkup(blog.post)}
-          </div>
-        </Card.Body>
-      )}
-      {blog.postFormat === "markdown" && (
-        <Card.Body>
-          <div className="default-style max-w-[1000px] mx-auto">
-            <Markdown>{blog.post.trim()}</Markdown>
-          </div>
-        </Card.Body>
-      )}
+      <Card.Body>
+        <div className={`prose max-w-[1000px] mx-auto`}>
+          {blog.postFormat === "editor"
+            ? convertHtml(blog.post)
+            : convertMarkdown(blog.post)}
+        </div>
+      </Card.Body>
     </Card>
   );
 };
