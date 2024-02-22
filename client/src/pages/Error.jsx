@@ -1,15 +1,20 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 
 const Error = () => {
+  const error = useRouteError();
+  console.log(error);
+
   return (
     <Container>
       <div className="text-center mt-40">
-        <h1 className="mb-4 text-6xl font-semibold text-red-500">404</h1>
-        <p class="text-gray-600 mb-4">
-          Oops! The page you are looking for could not be found.
-        </p>
+        <h1 className="mb-4 text-6xl font-semibold text-red-500">
+          {error.status}
+        </h1>
+        <p className="text-gray-600 mb-4">{error.statusText}</p>
+        {/* <p>{error.}</p> */}
         <p className="mb-4 text-lg text-gray-600">
           Oops! Looks like you're lost.
         </p>
@@ -28,17 +33,17 @@ const Error = () => {
             />
           </svg>
         </div>
-        <p className="mt-4 text-gray-600">
-          Let's get you back{" "}
+        <div className="mt-4 text-gray-600 flex flex-col">
+          <p>Let's get you back </p>
           <Link
             to="/"
-            class="mt-4 inline-block rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600"
+            className="mt-4 inline-block rounded bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600"
           >
             {" "}
             Go back to Home{" "}
           </Link>
           .
-        </p>
+        </div>
       </div>
     </Container>
   );
