@@ -20,6 +20,7 @@ This project is a simple blogging application built using the MERN (MongoDB, Exp
 - Mongoose
 - Axios
 - HTML/CSS
+- Tailwindcss and React Bootstrap
 - Markdown parser (e.g., marked)
 - HTML sanitizer (e.g., HTMLReactParser)
 - Rich text editor library (e.g., ReactQuill)
@@ -43,7 +44,7 @@ This project is a simple blogging application built using the MERN (MongoDB, Exp
 - View and interact with other users' blog posts.
 - Enjoy reading and writing blog content in a user-friendly interface.
 
-## Contributin
+## Contribution
 
 Contributions are welcome! Feel free to open issues or submit pull requests to contribute to the project.
 
