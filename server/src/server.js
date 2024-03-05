@@ -3,15 +3,11 @@ import express from "express";
 import connectDB from "./config/connectDB.js";
 import blogRouter from "./routers/blog.router.js";
 import cors from "cors";
+import corsOptions from "./config/corsOption.js";
 import errorHandler from "./middlewares/errorHandler.js";
 
 const app = express();
 const PORT = process.env.PORT;
-
-const corsOptions = {
-  origin: "http://localhost:5173",
-  optionsSuccessStatus: 200,
-};
 
 app.use(cors(corsOptions));
 
