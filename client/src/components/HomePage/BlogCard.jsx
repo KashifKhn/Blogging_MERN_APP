@@ -3,19 +3,10 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { convertHtml, convertMarkdown } from "../../utils/blogConverter";
+import findReadTime from "../../utils/findReadTime";
 
 const BlogCard = ({ blog }) => {
   const timeAgo = moment(blog.createdAt).fromNow();
-  const countWord = (str) => {
-    str = str.trim();
-    const words = str.split(/\s+/);
-    return words.length;
-  };
-  const findReadTime = (str) => {
-    const wordCount = countWord(str);
-    const readTime = Math.ceil(wordCount / 200);
-    return readTime;
-  };
   return (
     <Link to={`/${blog._id}`}>
       <Card className="w-full">
