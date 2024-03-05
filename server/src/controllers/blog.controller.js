@@ -1,24 +1,25 @@
 import { Blog } from "../models/blog.model.js";
+import asyncHandler from "express-async-handler";
 
-const getBlogs = async (req, res) => {
+const getBlogs = asyncHandler(async (req, res) => {
   try {
     const blogs = await Blog.find();
     res.status(200).json(blogs);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-};
+});
 
-const getBlog = async (req, res) => {
+const getBlog = asyncHandler(async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
     res.status(200).json(blog);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-};
+});
 
-const createBlog = async (req, res) => {
+const createBlog = asyncHandler(async (req, res) => {
   const blog = new Blog(req.body);
 
   try {
@@ -27,9 +28,9 @@ const createBlog = async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
-};
+});
 
-const updateBlog = async (req, res) => {
+const updateBlog = asyncHandler(async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
     blog.title = req.body.title;
@@ -41,15 +42,15 @@ const updateBlog = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-};
+});
 
-const deleteBlog = async (req, res) => {
+const deleteBlog = asyncHandler(async (req, res) => {
   try {
     await Blog.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: "Blog deleted" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-};
+});
 
 export { getBlogs, getBlog, createBlog, updateBlog, deleteBlog };
