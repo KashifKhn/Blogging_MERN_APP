@@ -15,6 +15,7 @@ const blogSchema = new Schema(
       type: String,
       enum: ["editor", "markdown"],
     },
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   },
   {
     timestamps: true,
