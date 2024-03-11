@@ -9,5 +9,5 @@ const router = express.Router({
   mergeParams: true,
 });
 
-router.route.get("/", getComments).post("/", createComment);
+router.route("/").get(getComments).post(createComment);
 router.delete("/:commentId", deleteComment);
