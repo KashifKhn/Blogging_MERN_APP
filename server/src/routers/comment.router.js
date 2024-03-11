@@ -5,7 +5,9 @@ import {
   getComments,
 } from "../controllers/comment.controller.js";
 
-const router = express.Router();
+const router = express.Router({
+  mergeParams: true,
+});
 
 router.route.get("/", getComments).post("/", createComment);
-router.delete("/:id", deleteComment);
+router.delete("/:commentId", deleteComment);

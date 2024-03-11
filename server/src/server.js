@@ -1,10 +1,11 @@
 import "dotenv/config";
 import express from "express";
 import connectDB from "./config/connectDB.js";
-import blogRouter from "./routers/blog.router.js";
 import cors from "cors";
 import corsOptions from "./config/corsOption.js";
 import errorHandler from "./middlewares/errorHandler.js";
+import blogRouter from "./routers/blog.router.js";
+import commentRouter from "./routers/comment.router.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -17,6 +18,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/blogs", blogRouter);
+app.use("/api/:blogId/comments", commentRouter);
 
 app.use(errorHandler);
 
