@@ -33,7 +33,7 @@ const deleteComment = asyncHandler(async (req, res) => {
   if (!blog) {
     res.status(404).json({ message: "Blog not found" });
   }
-  const comment = await Comment.findById(commentId);
+  const comment = await Comment.findByIdAndDelete(commentId);
   if (!comment) {
     res.status(404).json({ message: "Comment not found" });
   }
@@ -41,7 +41,6 @@ const deleteComment = asyncHandler(async (req, res) => {
     (comment) => comment.toString() !== commentId
   );
   await blog.save();
-  await comment.remove();
   res.status(200).json({ message: "Comment removed" });
 });
 

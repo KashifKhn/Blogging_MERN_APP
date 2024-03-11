@@ -2,13 +2,8 @@ import mongoose, { Schema } from "mongoose";
 
 const commentSchema = new Schema(
   {
-    content: {
+    comment: {
       type: String,
-      required: true,
-    },
-    blog: {
-      type: Schema.Types.ObjectId,
-      ref: "Blog",
       required: true,
     },
   },
