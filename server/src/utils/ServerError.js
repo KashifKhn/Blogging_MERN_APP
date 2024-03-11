@@ -1,6 +1,6 @@
 class ServerError extends Error {
   constructor(
-    statusCode,
+    statusCode = 500,
     message = "Something went wrong",
     errors = [],
     stack = ""
@@ -9,7 +9,7 @@ class ServerError extends Error {
     this.statusCode = statusCode;
     this.data = null;
     this.message = message;
-    this.success = false;
+    this.success = statusCode >= 400 && statusCode < 600 ? false : true;
     this.errors = errors;
 
     if (stack) {
