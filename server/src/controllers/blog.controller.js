@@ -1,4 +1,4 @@
-import { Blog } from "../models/blog.model.js";
+import  Blog  from "../models/blog.model.js";
 import asyncHandler from "express-async-handler";
 
 const getBlogs = asyncHandler(async (req, res) => {

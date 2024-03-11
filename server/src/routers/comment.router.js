@@ -11,3 +11,5 @@ const router = express.Router({
 
 router.route("/").get(getComments).post(createComment);
 router.delete("/:commentId", deleteComment);
+
+export default router;
