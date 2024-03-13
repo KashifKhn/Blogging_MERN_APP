@@ -3,19 +3,46 @@ import React, { useState } from "react";
 const CommentCard = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const handleDropdown = () => {
+    if (dropdownOpen) {
+      setDropdownOpen(false);
+    }
+  };
+
   return (
-    <div className="w-full border-b border-gray-300 relative">
-      <div className="flex justify-end  dark:bg-gray-900 dark:border-gray-700 absolute right-6 top-6">
+    <article
+      onClick={handleDropdown}
+      className="p-6 text-base border-b border-gray-300 bg-white rounded-lg dark:bg-gray-900"
+    >
+      <footer className="flex justify-between items-center mb-2 relative">
+        <div className="flex items-center">
+          <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+            <img
+              className="mr-2 w-6 h-6 rounded-full"
+              src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+              alt="Michael Gough"
+            />
+            Michael Gough
+          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            <time
+              pubdate=""
+              dateTime="2022-02-08"
+              title="February 8th, 2022"
+            >
+              Feb. 8, 2022
+            </time>
+          </p>
+        </div>
         <button
-          id="dropdownButton"
-          data-dropdown-toggle="dropdown"
-          className="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm"
+          id="dropdownComment1Button"
+          data-dropdown-toggle="dropdownComment1"
+          className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           type="button"
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <span className="sr-only">Open dropdown</span>
           <svg
-            className="w-5 h-5"
+            className="w-4 h-4"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -23,68 +50,73 @@ const CommentCard = () => {
           >
             <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
           </svg>
+          <span className="sr-only">Comment settings</span>
         </button>
         <div
-          id="dropdown"
-          className={`z-10 absolute m-0 top-8 ${
+          id="dropdownComment1"
+          className={`z-10 w-36 ${
             !dropdownOpen && "hidden"
-          } text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
+          } absolute right-4 top-8 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600`}
+          data-popper-placement="bottom"
         >
           <ul
-            className="py-2"
-            aria-labelledby="dropdownButton"
+            className="py-1 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownMenuIconHorizontalButton"
           >
             <li>
-              <button className="block px-4 py-2 w-full text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+              <button
+                className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
                 Edit
               </button>
             </li>
             <li>
-              <button className="block px-4 py-2 w-full text-sm text-red-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                <svg
-                  className="w-6 h-6 inline-block mr-2 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 32 32"
-                  id="Delete"
-                >
-                  <path
-                    d="M24.2,12.193,23.8,24.3a3.988,3.988,0,0,1-4,3.857H12.2a3.988,3.988,0,0,1-4-3.853L7.8,12.193a1,1,0,0,1,2-.066l.4,12.11a2,2,0,0,0,2,1.923h7.6a2,2,0,0,0,2-1.927l.4-12.106a1,1,0,0,1,2,.066Zm1.323-4.029a1,1,0,0,1-1,1H7.478a1,1,0,0,1,0-2h3.1a1.276,1.276,0,0,0,1.273-1.148,2.991,2.991,0,0,1,2.984-2.694h2.33a2.991,2.991,0,0,1,2.984,2.694,1.276,1.276,0,0,0,1.273,1.148h3.1A1,1,0,0,1,25.522,8.164Zm-11.936-1h4.828a3.3,3.3,0,0,1-.255-.944,1,1,0,0,0-.994-.9h-2.33a1,1,0,0,0-.994.9A3.3,3.3,0,0,1,13.586,7.164Zm1.007,15.151V13.8a1,1,0,0,0-2,0v8.519a1,1,0,0,0,2,0Zm4.814,0V13.8a1,1,0,0,0-2,0v8.519a1,1,0,0,0,2,0Z"
-                    fill="#b91c1c"
-                    className="color000000 svgShape"
-                  ></path>
-                </svg>
-                delete
+              <button
+                className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Remove
+              </button>
+            </li>
+            <li>
+              <button
+                className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Report
               </button>
             </li>
           </ul>
         </div>
+      </footer>
+      <p className="text-gray-500 dark:text-gray-400">
+        Very straight-to-point article. Really worth time reading. Thank you!
+        But tools are just the instruments for the UX designers. The knowledge
+        of the design tools are as important as the creation of the design
+        strategy.
+      </p>
+      <div className="flex items-center mt-4 space-x-4">
+        <button
+          type="button"
+          className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
+        >
+          <svg
+            className="mr-1.5 w-3.5 h-3.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 18"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"
+            />
+          </svg>
+          Reply
+        </button>
       </div>
-      <div className="flex flex-col items-start  dark:bg-gray-900 dark:border-gray-700">
-        <div className="flex pt-4 pl-4 gap-4">
-          <img
-            className="w-8 h-8 mb-3 rounded-full shadow-lg"
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
-            alt="Bonnie image"
-          />
-          <h5 className="mb-1 text-xl font-medium text-gray-600 dark:text-white">
-            Bonnie Green
-          </h5>
-        </div>
-        <div className="flex pb-4 pl-4">
-          <p>
-            Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet. consectetur
-            adipisicing elit. Enim autem porro odit pariatur, ratione saepe eum
-            qui. Saepe, sit assumenda? Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Quae, unde suscipit quas nobis amet facilis
-            quaerat odio magnam? Totam, suscipit. Lorem ipsum dolor, sit amet
-            consectetur adipisicing elit. Laboriosam quod fugit unde qui quam
-            enim molestiae vitae debitis repudiandae perspiciatis nisi, dolores
-            velit voluptatibus amet consectetur maiores minus, necessitatibus
-            quis.
-          </p>
-        </div>
-      </div>
-    </div>
+    </article>
   );
 };
 
