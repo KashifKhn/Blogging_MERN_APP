@@ -9,10 +9,15 @@ const useFetchUpdateBlog = (id, newData) => {
   const [error, setError] = useState(null);
 
   const updateBlog = async () => {
+    setLoading(true);
+    const abortCont = new AbortController();
     try {
       const { data } = await axios.put(
-        `${import.meta.env.VITE_API_ENDPOINT}/edit/${id}`,
-        newData
+        `${import.meta.env.VITE_API_ENDPOINT}/blogs/edit/${id}`,
+        newData,
+        {
+          signal: abortCont.signal,
+        }
       );
       setBlog(data);
       setLoading(false);

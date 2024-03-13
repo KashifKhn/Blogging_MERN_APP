@@ -10,10 +10,15 @@ const useFetchAddBlog = (data) => {
 
   const createNewBlog = async () => {
     setIsLoading(true);
+
+    const abortCont = new AbortController();
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_API_ENDPOINT}`,
-        data
+        `${import.meta.env.VITE_API_ENDPOINT}/blogs`,
+        data,
+        {
+          signal: abortCont.signal,
+        }
       );
       setResponse(res);
     } catch (error) {

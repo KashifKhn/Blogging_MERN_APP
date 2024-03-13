@@ -9,9 +9,12 @@ const useFetchBlogs = () => {
   const fetchData = useCallback(async () => {
     const abortCont = new AbortController();
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_ENDPOINT}`, {
-        signal: abortCont.signal,
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_ENDPOINT}/blogs`,
+        {
+          signal: abortCont.signal,
+        }
+      );
       setBlogs(response.data);
       setIsLoading(false);
     } catch (error) {

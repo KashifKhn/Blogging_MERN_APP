@@ -11,7 +11,7 @@ const useFetchSingleBlog = (id) => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_ENDPOINT}/${id}`,
+        `${import.meta.env.VITE_API_ENDPOINT}/blogs/${id}`,
         {
           signal: abortCont.signal,
         }

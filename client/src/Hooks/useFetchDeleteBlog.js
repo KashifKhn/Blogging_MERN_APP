@@ -10,9 +10,13 @@ const useFetchDeleteBlog = (id) => {
 
   const deleteBlog = async () => {
     setIsLoading(true);
+    const abortCont = new AbortController();
     try {
       const res = await axios.delete(
-        `${import.meta.env.VITE_API_ENDPOINT}/${id}`
+        `${import.meta.env.VITE_API_ENDPOINT}/blogs/${id}`,
+        {
+          signal: abortCont.signal,
+        }
       );
       setResponse(res);
     } catch (error) {
