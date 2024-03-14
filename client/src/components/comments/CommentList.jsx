@@ -1,27 +1,14 @@
 import React from "react";
 import CommentCard from "./CommentCard";
-import { useParams } from "react-router-dom";
-import useFetchComments from "../../Hooks/useFetchComments";
 
-const CommentList = ({comments}) => {
-  // const { id: blogId } = useParams();
-
-  // const { comments, isLoading, error, refetch } = useFetchComments(blogId);
-
-  // if (isLoading) {
-  //   return <p>Loading comments...</p>;
-  // }
-
-  // if (error) {
-  //   return <p>Failed to load comments: {error.message}</p>;
-  // }
-
+const CommentList = ({ comments, handleDelete }) => {
   return (
     <div>
       {comments.map((comment) => (
         <CommentCard
           key={comment._id}
           comment={comment}
+          handleDelete={handleDelete}
         />
       ))}
     </div>

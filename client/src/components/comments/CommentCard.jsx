@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getTimeAgo } from "../../utils/momentFunctions";
+import { useParams } from "react-router-dom";
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ comment, handleDelete }) => {
+  const { id: blogId } = useParams();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleDropdown = () => {
@@ -71,7 +73,10 @@ const CommentCard = ({ comment }) => {
                 </button>
               </li>
               <li>
-                <button className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                <button
+                  className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  onClick={() => handleDelete(blogId, comment._id)}
+                >
                   Remove
                 </button>
               </li>
@@ -84,9 +89,7 @@ const CommentCard = ({ comment }) => {
           </div>
         </div>
       </div>
-      <p className="text-gray-500 dark:text-gray-400">
-        {comment.comment}
-      </p>
+      <p className="text-gray-500 dark:text-gray-400">{comment.comment}</p>
       <div className="flex items-center mt-4 space-x-4">
         <button
           type="button"
