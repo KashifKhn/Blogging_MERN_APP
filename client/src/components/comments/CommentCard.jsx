@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { getTimeAgo } from "../../utils/momentFunctions";
 
-const CommentCard = () => {
+const CommentCard = ({ comment }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleDropdown = () => {
@@ -30,7 +31,7 @@ const CommentCard = () => {
               dateTime="2022-02-08"
               title="February 8th, 2022"
             >
-              Feb. 8, 2022
+              {getTimeAgo(comment.createdAt)}
             </time>
           </p>
         </div>
@@ -84,10 +85,7 @@ const CommentCard = () => {
         </div>
       </div>
       <p className="text-gray-500 dark:text-gray-400">
-        Very straight-to-point article. Really worth time reading. Thank you!
-        But tools are just the instruments for the UX designers. The knowledge
-        of the design tools are as important as the creation of the design
-        strategy.
+        {comment.comment}
       </p>
       <div className="flex items-center mt-4 space-x-4">
         <button
