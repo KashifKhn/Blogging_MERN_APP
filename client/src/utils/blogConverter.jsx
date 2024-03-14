@@ -4,7 +4,6 @@ import Markdown from "react-markdown";
 
 const purify = (html) => {
   const cleanHtml = DOMPurify.sanitize(html);
-  console.log(cleanHtml);
 
   return cleanHtml;
 };
