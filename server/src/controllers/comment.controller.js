@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
-import Comment from "../models/comment.model.js";
-import Blog from "../models/blog.model.js";
+import {Comment} from "../models/comment.model.js";
+import {Blog} from "../models/blog.model.js";
 import { ServerError } from "../utils/ServerError.js";
 
 const getComments = asyncHandler(async (req, res) => {

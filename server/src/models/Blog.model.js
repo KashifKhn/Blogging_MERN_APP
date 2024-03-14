@@ -1,11 +1,11 @@
 import { Schema, model } from "mongoose";
-import Comment from "../models/comment.model.js";
+import {Comment} from "./comment.model.js";
 
 const blogSchema = new Schema(
   {
     title: {
       type: String,
-    }, 
+    },
     imgUrl: {
       type: String,
     },
@@ -27,8 +27,8 @@ blogSchema.post("findOneAndDelete", async (blogs) => {
   if (blogs) {
     await Comment.deleteMany({ _id: { $in: blogs.comments } });
   }
-}); 
+});
 
 const Blog = model("Blog", blogSchema);
 
-export default Blog;
+export { Blog };
