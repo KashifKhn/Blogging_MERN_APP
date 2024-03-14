@@ -14,7 +14,7 @@ const CommentCard = () => {
       onClick={handleDropdown}
       className="p-6 text-base border-b border-gray-300 bg-white rounded-lg dark:bg-gray-900"
     >
-      <footer className="flex justify-between items-center mb-2 relative">
+      <div className="flex justify-between items-center mb-2 relative">
         <div className="flex items-center">
           <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
             <img
@@ -34,59 +34,55 @@ const CommentCard = () => {
             </time>
           </p>
         </div>
-        <button
-          id="dropdownComment1Button"
-          data-dropdown-toggle="dropdownComment1"
-          className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          type="button"
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-        >
-          <svg
-            className="w-4 h-4"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 16 3"
+        <div>
+          <button
+            id="dropdownComment1Button"
+            data-dropdown-toggle="dropdownComment1"
+            className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            type="button"
+            onClick={() => setDropdownOpen(!dropdownOpen)}
           >
-            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-          </svg>
-          <span className="sr-only">Comment settings</span>
-        </button>
-        <div
-          id="dropdownComment1"
-          className={`z-10 w-36 ${
-            !dropdownOpen && "hidden"
-          } absolute right-4 top-8 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600`}
-          data-popper-placement="bottom"
-        >
-          <ul
-            className="py-1 text-sm text-gray-700 dark:text-gray-200"
-            aria-labelledby="dropdownMenuIconHorizontalButton"
+            <svg
+              className="w-4 h-4"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 16 3"
+            >
+              <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+            </svg>
+            <span className="sr-only">Comment settings</span>
+          </button>
+          <div
+            id="dropdownComment1"
+            className={`z-10 w-36 ${
+              !dropdownOpen && "hidden"
+            } absolute right-4 top-8 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600`}
+            data-popper-placement="bottom"
           >
-            <li>
-              <button
-                className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Edit
-              </button>
-            </li>
-            <li>
-              <button
-                className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Remove
-              </button>
-            </li>
-            <li>
-              <button
-                className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Report
-              </button>
-            </li>
-          </ul>
+            <ul
+              className="py-1 text-sm text-gray-700 dark:text-gray-200"
+              aria-labelledby="dropdownMenuIconHorizontalButton"
+            >
+              <li>
+                <button className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  Edit
+                </button>
+              </li>
+              <li>
+                <button className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  Remove
+                </button>
+              </li>
+              <li>
+                <button className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  Report
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
-      </footer>
+      </div>
       <p className="text-gray-500 dark:text-gray-400">
         Very straight-to-point article. Really worth time reading. Thank you!
         But tools are just the instruments for the UX designers. The knowledge
