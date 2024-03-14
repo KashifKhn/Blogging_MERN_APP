@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
-const useFetchBlogs = (blogId) => {
+const useFetchComments = (blogId) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,4 +34,4 @@ const useFetchBlogs = (blogId) => {
   return { comments, isLoading, error, refetch: fetchData };
 };
 
-export default useFetchBlogs;
+export default useFetchComments;

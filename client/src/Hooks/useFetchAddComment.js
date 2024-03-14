@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const useFetchAddBlog = (data, blogId) => {
+const useFetchAddComment = (data, blogId) => {
   const navigate = useNavigate();
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
@@ -36,4 +36,4 @@ const useFetchAddBlog = (data, blogId) => {
   return { response, error, isLoading, handleSubmit };
 };
 
-export default useFetchAddBlog;
+export default useFetchAddComment;
