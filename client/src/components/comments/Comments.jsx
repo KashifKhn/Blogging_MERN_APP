@@ -4,12 +4,13 @@ import CommentForm from "./CommentForm";
 import { useParams } from "react-router-dom";
 import useFetchAddComment from "../../Hooks/useFetchAddComment";
 import useFetchComments from "../../Hooks/useFetchComments";
+import useFetchDeleteComment from "../../Hooks/useFetchDeleteComment";
 
 const Comments = () => {
   const { id: blogId } = useParams();
   const [commentText, setCommentText] = useState("");
 
-  const { response, handleSubmit } = useFetchAddComment(
+  const { response: addResponse, handleSubmit } = useFetchAddComment(
     {
       comment: commentText,
     },
@@ -17,13 +18,14 @@ const Comments = () => {
   );
 
   const { comments, isLoading, error, refetch } = useFetchComments(blogId);
-  
+  const { response: deleteResponse, handleDelete } = useFetchDeleteComment();
+
   useEffect(() => {
-    if (response) {
+    if (deleteResponse || addResponse) {
       setCommentText("");
       refetch();
     }
-  }, [response]);
+  }, [deleteResponse, addResponse]);
 
   return (
     <div>
@@ -32,7 +34,10 @@ const Comments = () => {
         setCommentText={setCommentText}
         handleSubmit={handleSubmit}
       />
-      <CommentList comments={comments} />
+      <CommentList
+        comments={comments}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };
