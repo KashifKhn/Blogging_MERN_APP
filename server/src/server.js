@@ -6,6 +6,8 @@ import corsOptions from "./config/corsOption.js";
 import errorHandler from "./middlewares/errorHandler.js";
 import blogRouter from "./routers/blog.router.js";
 import commentRouter from "./routers/comment.router.js";
+import blogLikeRouter from "./routers/blogLike.router.js";
+import commentLikeRouter from "./routers/commentLike.router.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -19,6 +21,8 @@ connectDB();
 
 app.use("/api/blogs", blogRouter);
 app.use("/api/:blogId/comments", commentRouter);
+app.use("/api/blog/likes", blogLikeRouter);
+app.use("/api/comment/likes", commentLikeRouter);
 
 app.use(errorHandler);
 
