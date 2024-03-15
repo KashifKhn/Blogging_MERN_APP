@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import {Comment} from "./comment.model.js";
+import { Comment } from "./comment.model.js";
 
 const blogSchema = new Schema(
   {
@@ -17,6 +17,7 @@ const blogSchema = new Schema(
       enum: ["editor", "markdown"],
     },
     comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+    likes: [{ type: Schema.Types.ObjectId, ref: "Like" }],
   },
   {
     timestamps: true,
