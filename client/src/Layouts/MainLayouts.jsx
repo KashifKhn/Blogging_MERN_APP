@@ -9,9 +9,9 @@ const MainLayouts = () => {
     <>
       <Header />
       <main>
-        <Container className="my-8">
+        <div className="container">
           <Outlet />
-        </Container>
+        </div>
       </main>
       <Footer />
     </>

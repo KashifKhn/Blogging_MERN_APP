@@ -11,7 +11,7 @@ const Header = () => {
       expand="md"
       className="bg-body-tertiary border-b-2"
     >
-      <Container>
+      <div className="container">
         <Navbar.Brand className="mr-16">
           <NavLink
             to="/"
@@ -65,7 +65,12 @@ const Header = () => {
             navbarScroll
           >
             <div className="nav-link flex items-center justify-center mr-4">
-              <NavLink to="/new" className={"flex gap-2 opacity-60 hover:opacity-100 transition-all duration-400 ease-in-out"}>
+              <NavLink
+                to="/new"
+                className={
+                  "flex gap-2 opacity-60 hover:opacity-100 transition-all duration-400 ease-in-out"
+                }
+              >
                 <svg
                   width="24"
                   height="24"
@@ -101,7 +106,7 @@ const Header = () => {
             </div>
           </Nav>
         </Navbar.Collapse>
-      </Container>
+      </div>
     </Navbar>
   );
 };
