@@ -1,5 +1,4 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 import { useRouteError } from "react-router-dom";
 
@@ -7,7 +6,7 @@ const Error = () => {
   const error = useRouteError();
 
   return (
-    <Container>
+    <div className="container">
       <div className="text-center mt-40">
         <h1 className="mb-4 text-6xl font-semibold text-red-500">
           {error.status}
@@ -44,7 +43,7 @@ const Error = () => {
           .
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
