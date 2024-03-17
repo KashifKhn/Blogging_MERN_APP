@@ -12,11 +12,18 @@ const BlogCardList = () => {
     return <div>{error}</div>;
   }
   return (
-    <div className="flex flex-col gap-4">
-      {blogs.map((blog) => (
-        <BlogCard key={blog._id} blog={blog} />
-      ))}
-    </div>
+    <section className="dark:bg-gray-900">
+      <div className="py-4 px-1 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
+        <div className="grid gap-4">
+          {blogs.map((blog) => (
+            <BlogCard
+              key={blog._id}
+              blog={blog}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
