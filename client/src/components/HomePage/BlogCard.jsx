@@ -7,7 +7,7 @@ import { getTimeAgo } from "../../utils/momentFunctions";
 const BlogCard = ({ blog }) => {
   return (
     <Link to={`/${blog._id}`}>
-      <article className="p-4 rounded-lg flex  border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-none">
+      <article className="p-4 rounded-lg flex border-b-4 border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-none">
         <div className="max-w-[75%] pr-4">
           <div className="flex gap-4 items-center mb-4 text-gray-500">
             <div className="flex items-center space-x-4">

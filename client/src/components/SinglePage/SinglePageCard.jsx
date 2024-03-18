@@ -19,7 +19,7 @@ const SinglePageCard = () => {
         />
         <figcaption className="mt-2 text-sm text-center text-gray-500 dark:text-gray-400"></figcaption>
       </figure>
-      <section className="prose w-full min-w-full">
+      <section className="prose w-full min-w-full dark:prose-invert">
         {blog?.postFormat === "markdown"
           ? convertMarkdown(blog?.post)
           : convertHtml(blog?.post)}

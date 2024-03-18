@@ -15,7 +15,7 @@ const CommentCard = ({ comment, handleDelete }) => {
   return (
     <article
       onClick={handleDropdown}
-      className="p-6 text-base border-b border-gray-300 bg-white rounded-lg dark:bg-gray-900"
+      className="p-6 text-base border-b border-gray-300 dark:border-gray-700 rounded-lg dark:bg-gray-900"
     >
       <div className="flex justify-between items-center mb-2 relative">
         <div className="flex items-center">
@@ -60,7 +60,7 @@ const CommentCard = ({ comment, handleDelete }) => {
             id="dropdownComment1"
             className={`z-10 w-36 ${
               !dropdownOpen && "hidden"
-            } absolute right-4 top-8 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600`}
+            } absolute right-4 top-8 rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600`}
             data-popper-placement="bottom"
           >
             <ul

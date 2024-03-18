@@ -2,12 +2,12 @@ import React from "react";
 
 const CommentForm = ({ commentText, setCommentText, handleSubmit }) => {
   return (
-    <div className="m-8 border-y-2 pt-8">
+    <div className="m-8 pt-8">
       <form
         className="mb-6 flex flex-col items-end"
         onSubmit={handleSubmit}
       >
-        <div className="py-2 w-full px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <div className="py-2 w-full px-4 mb-4 rounded-lg border-b-4 border-gray-200 dark:border-gray-700 dark:bg-gray-800">
           <label
             htmlFor="comment"
             className="sr-only"
@@ -16,11 +16,10 @@ const CommentForm = ({ commentText, setCommentText, handleSubmit }) => {
           </label>
           <textarea
             id="comment"
-            rows={6}
-            className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+            rows={5}
+            className="px-0 w-full text-sm resize-none text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
             placeholder="Write a comment..."
-            required=""
-            style={{ height: 116 }}
+            required={true}
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
           />
@@ -28,7 +27,7 @@ const CommentForm = ({ commentText, setCommentText, handleSubmit }) => {
         <div>
           <button
             type="submit"
-            className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+            className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-blue-200  hover:bg-blue-800"
           >
             Post comment
           </button>

@@ -28,7 +28,7 @@ const Comments = () => {
   }, [deleteResponse, addResponse]);
 
   return (
-    <div>
+    <div className="pb-8">
       <CommentForm
         commentText={commentText}
         setCommentText={setCommentText}
