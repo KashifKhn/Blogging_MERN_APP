@@ -18,6 +18,7 @@ const Editor = ({ value, handleChange }) => {
     ["clean"],
   ];
 
+  
   return (
     <div className="min-h-[450px] max-md:min-h-[500px] max-sm:min-h-[550px]">
       <ReactQuill
@@ -25,7 +26,7 @@ const Editor = ({ value, handleChange }) => {
         theme="snow"
         value={value}
         onChange={handleChange}
-        className="h-96"
+        className="h-96 dark:text-white"
       />
     </div>
   );
