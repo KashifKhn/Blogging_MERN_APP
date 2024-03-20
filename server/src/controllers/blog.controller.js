@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 import { ServerError } from "../utils/ServerError.js";
 
 const getBlogs = asyncHandler(async (req, res) => {
-  const blogs = await Blog.find();
+  const blogs = await Blog.find().sort({ createdAt: -1 });
   if (!blogs || blogs.length === 0) {
     throw new ServerError(404, "No blogs found in the database.");
   }
