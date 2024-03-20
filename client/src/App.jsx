@@ -7,6 +7,7 @@ import Error from "./pages/Error";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-quill/dist/quill.snow.css";
 import MainLayouts from "./Layouts/MainLayouts";
+import SignupCard from "./pages/Signup";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -24,12 +25,20 @@ const App = () => {
           element: <SingleBlog />,
         },
         {
+          path: "signup",
+          element: <SignupCard />,
+        },
+        {
           path: "new",
           element: <CreateNew />,
         },
         {
           path: "edit/:id",
           element: <Edit />,
+        },
+        {
+          path: "*",
+          element: <Error />,
         },
       ],
     },
