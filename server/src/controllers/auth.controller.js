@@ -93,16 +93,18 @@ const login = asyncHandler(async (req, res) => {
   };
 
   res
-    .cookie("refreshToken", refreshToken, cookieOptions)
+    .cookie("refreshToken", refreshToken, {
+      ...cookieOptions,
+      maxAge: 1 * 24 * 60 * 60 * 1000,
+    })
     .cookie("accessToken", accessToken, cookieOptions)
     .status(200)
     .json({
       message: "User logged in successfully",
       user: {
         _id: user._id,
-        email: user.email,
         username: user.username,
-        fullname: user.fullname,
+        accessToken,
       },
     });
 });
