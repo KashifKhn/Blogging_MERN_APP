@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-quill/dist/quill.snow.css";
 import MainLayouts from "./Layouts/MainLayouts";
 import SignupCard from "./pages/Signup";
+import Login from "./pages/Login";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const App = () => {
         {
           path: "signup",
           element: <SignupCard />,
+        },
+        {
+          path: "login",
+          element: <Login />,
         },
         {
           path: "new",
