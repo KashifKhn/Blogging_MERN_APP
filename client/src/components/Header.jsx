@@ -3,12 +3,18 @@ import { NavLink } from "react-router-dom";
 import Logo from "../assets/svgs/Logo";
 
 const Header = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
     if (theme === "dark") {
       setIsDarkTheme(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      setIsDarkTheme(false);
+      document.documentElement.classList.remove("dark");
     }
   }, []);
 
