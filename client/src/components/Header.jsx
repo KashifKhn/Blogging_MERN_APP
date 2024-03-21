@@ -1,35 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/svgs/Logo";
+import useTheme from "../Hooks/useTheme";
 
 const Header = () => {
-  const [isDarkTheme, setIsDarkTheme] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
-
-  useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-      setIsDarkTheme(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      setIsDarkTheme(false);
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
-
-  const handleThemeChange = () => {
-    if (isDarkTheme) {
-      localStorage.setItem("theme", "light");
-      setIsDarkTheme(false);
-      document.documentElement.classList.remove("dark");
-    } else {
-      localStorage.setItem("theme", "dark");
-      setIsDarkTheme(true);
-      document.documentElement.classList.add("dark");
-    }
-  };
-
+  const { handleThemeChange } = useTheme();
   return (
     <header className="antialiased border-b-2 dark:bg-gray-900 border-gray-200 dark:border-gray-700">
       <nav className="flex container flex-wrap gap-4 px-4 lg:px-6 py-2.5 justify-center sm:justify-between items-center">
