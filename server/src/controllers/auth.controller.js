@@ -118,4 +118,32 @@ const logout = asyncHandler(async (req, res) => {
   });
 });
 
-export { register, login, logout };
+const refresh = asyncHandler(async (req, res) => {
+  const user = req.user;
+  
+  const { refreshToken } = req.cookies;
+
+  if (refreshToken !== user.refreshToken) {
+    throw new ServerError(401, "Invalid refresh token");
+  }
+
+  const { accessToken } = tokenGenerator(user);
+
+  res
+    .status(200)
+    .cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    })
+    .json({
+      message: "Token refreshed successfully",
+      user: {
+        _id: user._id,
+        username: user.username,
+        accessToken,
+      },
+    });
+});
+
+export { register, login, logout, refresh };

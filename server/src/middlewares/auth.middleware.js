@@ -12,19 +12,24 @@ const verifyJwt = asyncHandler(async (req, res, next) => {
   if (!token) {
     throw new ServerError(401, "Unauthorized");
   }
-  const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
-  if (!decoded) {
-    throw new ServerError(401, "Unauthorized");
+    if (!decoded) {
+      throw new ServerError(401, "Unauthorized");
+    }
+
+    const user = await User.findById(decoded._id).select("-password");
+
+    if (!user) {
+      throw new ServerError(401, "Unauthorized");
+    }
+    req.user = user;
+    next();
+  } catch (error) {
+    
+    throw new ServerError(401, error?.message + " Refresh Token Expired" || "Unauthorized");
   }
-
-  const user = await User.findById(decoded._id).select("-password");
-
-  if (!user) {
-    throw new ServerError(401, "Unauthorized");
-  }
-  req.user = user;
-  next();
 });
 
 export { verifyJwt };
