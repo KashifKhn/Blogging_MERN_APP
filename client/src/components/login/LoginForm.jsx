@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import ShowHideButton from "../signup/ShowHideButton";
 import useLogin from "../../Hooks/auth/useLogin";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import AuthContext from "../../context/auth/AuthContext";
 
 const LoginForm = () => {
+  const { setAuthState } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const { response, error, isLoading, resetHook, loginUser } = useLogin();
   const navigate = useNavigate();
@@ -28,6 +30,13 @@ const LoginForm = () => {
   useEffect(() => {
     if (response) {
       toast.success(response.data.message);
+      setAuthState({
+        id: response.data.user._id,
+        accessToken: response.data.user.accessToken,
+        user: response.data.user.username,
+        isAuthenticated: true,
+      });
+
       resetHook();
       setTimeout(() => {
         navigate("/");

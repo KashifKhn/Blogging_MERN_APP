@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import CreateNew from "./pages/CreateNew";
 import Edit from "./pages/Edit";
 import SingleBlog from "./pages/SingleBlog";
@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import MainLayouts from "./Layouts/MainLayouts";
 import SignupCard from "./pages/Signup";
 import Login from "./pages/Login";
-import AuthProvider from "./context/auth/authProvider";
+import AuthProvider from "./context/auth/AuthProvider";
 
 const App = () => {
   const router = createBrowserRouter([
