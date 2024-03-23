@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import ShowHideButton from "../signup/ShowHideButton";
 
 const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <form
       className="space-y-4 md:space-y-6"
-      action="#">
+      onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label
           htmlFor="email"
@@ -15,26 +34,60 @@ const LoginForm = () => {
         <input
           type="email"
           name="email"
+          autoComplete="email"
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: "Invalid email address",
+            },
+          })}
           id="email"
           className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="name@company.com"
           required=""
         />
+        {errors.email && (
+          <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+            <span className="font-medium">Oops!</span> {errors.email.message}
+          </p>
+        )}
       </div>
-      <div>
+      <div className="relative">
         <label
           htmlFor="password"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Password
         </label>
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           id="password"
+          autoComplete="current-password"
+          {...register("password", {
+            required: "Password is required",
+            minLength: {
+              value: 8,
+              message: "Password must have at least 8 characters",
+            },
+          })}
           placeholder="••••••••"
           className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required=""
         />
+        <ShowHideButton
+          value={showPassword}
+          onClick={() => setShowPassword(!showPassword)}
+          className={`
+            right-3 top-9 
+          
+          `}
+        />
+        {errors.password && (
+          <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+            <span className="font-medium">Oops!</span> {errors.password.message}
+          </p>
+        )}
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-start">

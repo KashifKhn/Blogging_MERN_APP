@@ -1,9 +1,9 @@
 import React from "react";
 
-const ShowHideButton = ({ value, onClick }) => {
+const ShowHideButton = ({ value, onClick, className }) => {
   return (
     <button
-      className="w-6 absolute bottom-2 right-3"
+      className={`w-6 absolute ${className}`}
       type="button"
       onClick={onClick}>
       {value ? (
