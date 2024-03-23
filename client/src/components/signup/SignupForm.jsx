@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ShowHideButton from "./ShowHideButton";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import useSignup from "../../Hooks/useSignup";
+import { toast, ToastContainer } from "react-toastify";
 
 const SignupForm = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const { response, isLoading, error, registerUser } = useSignup();
+
   const {
     register,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
+    reset,
   } = useForm({
     defaultValues: {
       fullname: "",
@@ -26,13 +31,36 @@ const SignupForm = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    await registerUser(data);
   };
+
+  useEffect(() => {
+    if (response) {
+      toast.success(response.data.message);
+      setTimeout(() => {
+        reset();
+        navigate("/login");
+      }, 1200);
+    }
+
+    if (error) {
+      toast.error(error.message, {
+        autoClose: 1000,
+      });
+      reset();
+    }
+  }, [response, error]);
 
   return (
     <form
       className="space-y-4 md:space-y-6"
       onSubmit={handleSubmit(onSubmit)}>
+      {error && (
+        <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+          {error.message}
+        </p>
+      )}
+      <ToastContainer />
       <div>
         <label
           htmlFor="fullname"
@@ -216,7 +244,8 @@ const SignupForm = () => {
       </div>
       <button
         type="submit"
-        className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+        className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        disabled={isLoading}>
         Create an account
       </button>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
