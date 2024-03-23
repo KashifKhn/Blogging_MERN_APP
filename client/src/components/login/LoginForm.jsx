@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import ShowHideButton from "../signup/ShowHideButton";
+import useLogin from "../../Hooks/auth/useLogin";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const { response, error, isLoading, resetHook, loginUser } = useLogin();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -15,16 +21,34 @@ const LoginForm = () => {
     },
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    await loginUser(data);
   };
+
+  useEffect(() => {
+    if (response) {
+      toast.success(response.data.message);
+      resetHook();
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+    }
+
+    if (error) {
+      toast.error(error.data.message);
+      resetHook();
+    }
+  }, [response, error]);
 
   return (
     <form
       className="space-y-4 md:space-y-6"
       onSubmit={handleSubmit(onSubmit)}>
+      {error && (
+        <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+          <span className="font-medium">Oops!</span> {error.message}
+        </p>
+      )}
       <div>
         <label
           htmlFor="email"
@@ -127,6 +151,7 @@ const LoginForm = () => {
           Sign up
         </Link>
       </p>
+      <ToastContainer />
     </form>
   );
 };
