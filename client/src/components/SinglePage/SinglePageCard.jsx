@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import useFetchSingleBlog from "../../Hooks/useFetchSingleBlog";
+import useFetchSingleBlog from "../../Hooks/useFetch/blogFetch/useFetchSingleBlog";
 import { convertHtml, convertMarkdown } from "../../utils/blogConverter";
 import Header from "./Header";
 

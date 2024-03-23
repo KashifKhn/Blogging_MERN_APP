@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useFetchDeleteBlog from "../../Hooks/useFetchDeleteBlog";
+import useFetchDeleteBlog from "../../Hooks/useFetch/blogFetch/useFetchDeleteBlog";
 import { Link } from "react-router-dom";
 const OptionsButton = ({ blogId }) => {
   const { handleDelete } = useFetchDeleteBlog(blogId);

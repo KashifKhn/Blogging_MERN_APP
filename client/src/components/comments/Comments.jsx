@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
 import { useParams } from "react-router-dom";
-import useFetchAddComment from "../../Hooks/useFetchAddComment";
-import useFetchComments from "../../Hooks/useFetchComments";
-import useFetchDeleteComment from "../../Hooks/useFetchDeleteComment";
+import useFetchAddComment from "../../Hooks/useFetch/commentFetch/useFetchAddComment";
+import useFetchComments from "../../Hooks/useFetch/commentFetch/useFetchComments";
+import useFetchDeleteComment from "../../Hooks/useFetch/commentFetch/useFetchDeleteComment";
 
 const Comments = () => {
   const { id: blogId } = useParams();

@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import CommonForm from "../CommonForm";
-import useFetchSingleBlog from "../../Hooks/useFetchSingleBlog";
-import useFetchUpdateBlog from "../../Hooks/useFetchUpdateBlog";
+import useFetchSingleBlog from "../../Hooks/useFetch/blogFetch/useFetchSingleBlog";
+import useFetchUpdateBlog from "../../Hooks/useFetch/blogFetch/useFetchUpdateBlog";
 
 const EditForm = () => {
   const { id } = useParams();

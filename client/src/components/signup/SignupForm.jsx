@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ShowHideButton from "./ShowHideButton";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import useSignup from "../../Hooks/useSignup";
+import useSignup from "../../Hooks/auth/useSignup";
 import { toast, ToastContainer } from "react-toastify";
 
 const SignupForm = () => {

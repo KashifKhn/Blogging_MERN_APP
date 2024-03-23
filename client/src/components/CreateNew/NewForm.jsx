@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CommonForm from "../CommonForm";
-import useFetchAddBlog from "../../Hooks/useFetchAddBlog";
+import useFetchAddBlog from "../../Hooks/useFetch/blogFetch/useFetchAddBlog";
 
 const NewForm = () => {
   const [form, setForm] = useState({

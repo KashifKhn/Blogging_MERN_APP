@@ -1,6 +1,6 @@
 import React from "react";
 import BlogCard from "./BlogCard";
-import useFetchBlogs from "../../Hooks/useFetchBlogs";
+import useFetchBlogs from "../../Hooks/useFetch/blogFetch/useFetchBlogs";
 
 const BlogCardList = () => {
   const { blogs, isLoading, error } = useFetchBlogs();
