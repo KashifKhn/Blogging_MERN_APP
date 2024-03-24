@@ -1,39 +1,16 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useFetch from "../useFetch";
 
-const useFetchAddBlog = (data) => {
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+const useFetchAddBlog = () => {
+  const { response, isLoading, error, fetchData } = useFetch();
 
-  const createNewBlog = async () => {
-    setIsLoading(true);
-
-    const abortCont = new AbortController();
-    try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_ENDPOINT}/blogs`,
-        data,
-        {
-          signal: abortCont.signal,
-        }
-      );
-      setResponse(res);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
+  const createNewBlog = async (data) => {
+    await fetchData(`${import.meta.env.VITE_API_ENDPOINT}/blogs`, {
+      method: "POST",
+      data: data,
+    });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await createNewBlog();
-    navigate("/");
-  };
-  return { response, error, isLoading, handleSubmit };
+  return { response, isLoading, error, createNewBlog };
 };
 
 export default useFetchAddBlog;

@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CommonForm from "../CommonForm";
 import useFetchAddBlog from "../../Hooks/useFetch/blogFetch/useFetchAddBlog";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const NewForm = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -10,10 +13,11 @@ const NewForm = () => {
     postFormat: "editor",
   });
   const [post, setPost] = useState("");
-  const { handleSubmit } = useFetchAddBlog({ ...form, post });
+
+  const { response, isLoading, error, createNewBlog } = useFetchAddBlog();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setForm((prevState) => {
       return {
         ...prevState,
@@ -21,6 +25,33 @@ const NewForm = () => {
       };
     });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      title: form.title,
+      description: form.description,
+      imgUrl: form.imgUrl,
+      postFormat: form.postFormat,
+      post: post,
+    };
+    await createNewBlog(data);
+  };
+
+  useEffect(() => {
+    if (response) {
+      toast.success("New blog created successfully!", {
+        autoClose: 2000,
+      });
+      navigate("/");
+    }
+
+    if (error) {
+      toast.error("Failed to create new blog!", {
+        autoClose: 2000,
+      });
+    }
+  }, [response, error, isLoading]);
 
   return (
     <div>

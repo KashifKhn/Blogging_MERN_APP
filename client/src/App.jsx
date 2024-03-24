@@ -6,11 +6,12 @@ import SingleBlog from "./pages/SingleBlog";
 import Error from "./pages/Error";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-quill/dist/quill.snow.css";
-import "react-toastify/dist/ReactToastify.css";
 import MainLayouts from "./Layouts/MainLayouts";
 import SignupCard from "./pages/Signup";
 import Login from "./pages/Login";
 import AuthProvider from "./context/auth/AuthProvider";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -55,6 +56,7 @@ const App = () => {
     <>
       <AuthProvider>
         <RouterProvider router={router} />
+        <ToastContainer />
       </AuthProvider>
     </>
   );
