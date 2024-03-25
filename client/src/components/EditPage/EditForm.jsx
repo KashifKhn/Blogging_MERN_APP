@@ -6,7 +6,9 @@ import useFetchUpdateBlog from "../../Hooks/useFetch/blogFetch/useFetchUpdateBlo
 
 const EditForm = () => {
   const { id } = useParams();
-  const { blog, isLoading } = useFetchSingleBlog(id);
+  const { response, isLoading, error } = useFetchSingleBlog(id);
+
+  const blog = response?.data;
 
   const [form, setForm] = useState({
     title: "",
@@ -14,6 +16,7 @@ const EditForm = () => {
     postFormat: "editor",
   });
   const [post, setPost] = useState("");
+  
   const { handleUpdate } = useFetchUpdateBlog(id, { ...form, post: post });
 
   const handleChange = (e) => {
@@ -37,7 +40,13 @@ const EditForm = () => {
     }
   }, [blog]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
