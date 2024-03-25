@@ -5,11 +5,19 @@ import Header from "./Header";
 
 const SinglePageCard = () => {
   const { id } = useParams();
-  const { blog } = useFetchSingleBlog(id);
+  const { response, error, isLoading, refetch } = useFetchSingleBlog(id);
+  const blog = response?.data;
+
+  if (isLoading || !blog) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
-    <article 
-    className="pt-4 pb-16 px-4 lg:pt-8 lg:pb-24 antialiased mx-auto w-full  dark:bg-gray-900 ">
+    <article className="pt-4 pb-16 px-4 lg:pt-8 lg:pb-24 antialiased mx-auto w-full  dark:bg-gray-900 ">
       <Header blog={blog} />
       <figure className=" mx-auto mt-8">
         <img
