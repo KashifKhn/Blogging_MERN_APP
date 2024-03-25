@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useFetchDeleteBlog from "../../Hooks/useFetch/blogFetch/useFetchDeleteBlog";
 import { Link } from "react-router-dom";
 const OptionsButton = ({ blogId }) => {
-  const { handleDelete } = useFetchDeleteBlog(blogId);
+  const { handleDelete } = useFetchDeleteBlog();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
@@ -51,7 +51,6 @@ const OptionsButton = ({ blogId }) => {
           </li>
           <li>
             <button className="flex justify-center items-center w-full py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
-
               <svg
                 width="24"
                 height="24"

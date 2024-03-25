@@ -1,29 +1,13 @@
-import { useState } from "react";
+import useFetch from "../useFetch";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-const useFetchDeleteBlog = (id) => {
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+const useFetchDeleteBlog = () => {
   const navigate = useNavigate();
-
-  const deleteBlog = async () => {
-    setIsLoading(true);
-    const abortCont = new AbortController();
-    try {
-      const res = await axios.delete(
-        `${import.meta.env.VITE_API_ENDPOINT}/blogs/${id}`,
-        {
-          signal: abortCont.signal,
-        }
-      );
-      setResponse(res);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
+  const { response, isLoading, error, fetchData } = useFetch();
+  const deleteBlog = async (id) => {
+    await fetchData(`blogs/${id}`, {
+      method: "DELETE",
+    });
   };
 
   const handleDelete = async (id) => {
