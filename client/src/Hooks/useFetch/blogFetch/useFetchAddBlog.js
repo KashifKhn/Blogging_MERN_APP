@@ -4,7 +4,7 @@ const useFetchAddBlog = () => {
   const { response, isLoading, error, fetchData } = useFetch();
 
   const createNewBlog = async (data) => {
-    await fetchData(`${import.meta.env.VITE_API_ENDPOINT}/blogs`, {
+    await fetchData(`blogs`, {
       method: "POST",
       data: data,
     });

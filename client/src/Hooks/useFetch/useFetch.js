@@ -8,9 +8,10 @@ const useFetch = (initialData = null) => {
   const abortController = new AbortController();
 
   const fetchData = async (url, options) => {
+    const BASE_URL = `${import.meta.env.VITE_API_ENDPOINT}/${url}`;
     setIsLoading(true);
     try {
-      const res = await axios(url, {
+      const res = await axios(BASE_URL, {
         ...options,
         signal: abortController.signal,
       });

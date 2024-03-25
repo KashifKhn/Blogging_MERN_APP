@@ -6,7 +6,7 @@ const useFetchBlogs = () => {
   const blogs = response?.data;
 
   const fetchBlogs = async () => {
-    await fetchData(`${import.meta.env.VITE_API_ENDPOINT}/blogs`);
+    await fetchData(`blogs`);
   };
 
   useEffect(() => {
