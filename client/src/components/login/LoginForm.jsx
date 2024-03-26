@@ -10,7 +10,7 @@ import AuthContext from "../../context/auth/AuthContext";
 const LoginForm = () => {
   const { setAuthState } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
-  const { response, error, isLoading, resetHook, loginUser } = useLogin();
+  const { response, error, isLoading, loginUser } = useLogin();
   const navigate = useNavigate();
   const {
     register,
@@ -37,7 +37,6 @@ const LoginForm = () => {
         isAuthenticated: true,
       });
 
-      resetHook();
       setTimeout(() => {
         navigate("/");
       }, 1500);
@@ -45,7 +44,6 @@ const LoginForm = () => {
 
     if (error) {
       toast.error(error.data.message);
-      resetHook();
     }
   }, [response, error]);
 
