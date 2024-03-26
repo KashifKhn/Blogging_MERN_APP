@@ -1,4 +1,4 @@
-import useFetch from "../useFetch";
+import useFetch from "../../useFetch";
 
 const useFetchAddBlog = () => {
   const { response, isLoading, error, fetchData } = useFetch();

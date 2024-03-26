@@ -1,4 +1,4 @@
-import useFetch from "../useFetch";
+import useFetch from "../../useFetch";
 
 const useFetchAddComment = (data, blogId) => {
   const { response, error, isLoading, fetchData } = useFetch();

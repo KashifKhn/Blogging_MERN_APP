@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useFetch from "../useFetch";
+import useFetch from "../../useFetch";
 
 const useFetchSingleBlog = (id) => {
   const { response, isLoading, error, fetchData } = useFetch();

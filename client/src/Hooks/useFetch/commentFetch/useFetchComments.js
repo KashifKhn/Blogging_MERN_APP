@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import useFetch from "../useFetch";
+import useFetch from "../../useFetch";
 
 const useFetchComments = (blogId) => {
   const { response, error, isLoading, fetchData } = useFetch();
