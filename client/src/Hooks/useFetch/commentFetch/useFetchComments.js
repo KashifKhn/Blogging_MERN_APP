@@ -1,37 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
-import axios from "axios";
+import useFetch from "../useFetch";
 
 const useFetchComments = (blogId) => {
-  const [comments, setComments] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { response, error, isLoading, fetchData } = useFetch();
 
-  const fetchData = useCallback(async () => {
-    const abortCont = new AbortController();
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_ENDPOINT}/${blogId}/comments`,
-        {
-          signal: abortCont.signal,
-        }
-      );
-      setComments(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      if (error.name === "AbortError") {
-        console.log("Fetch aborted");
-      } else {
-        setIsLoading(false);
-        setError(error.message);
-      }
-    }
+  const getComments = useCallback(async () => {
+    await fetchData(`${blogId}/comments`);
   }, []);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    getComments();
+  }, [getComments]);
 
-  return { comments, isLoading, error, refetch: fetchData };
+  return { response, isLoading, error, refetch: getComments };
 };
 
 export default useFetchComments;

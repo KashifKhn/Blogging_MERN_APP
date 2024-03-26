@@ -9,6 +9,7 @@ import useFetchDeleteComment from "../../Hooks/useFetch/commentFetch/useFetchDel
 const Comments = () => {
   const { id: blogId } = useParams();
   const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useState([]);
 
   const { response: addResponse, handleSubmit } = useFetchAddComment(
     {
@@ -17,8 +18,15 @@ const Comments = () => {
     blogId
   );
 
-  const { comments, isLoading, error, refetch } = useFetchComments(blogId);
+  const { response, isLoading, error, refetch } = useFetchComments(blogId);
   const { response: deleteResponse, handleDelete } = useFetchDeleteComment();
+
+  useEffect(() => {
+    if (response) {
+      setComments(response.data);
+    }
+  }, [response]);
+  
 
   useEffect(() => {
     if (deleteResponse || addResponse) {
@@ -26,6 +34,14 @@ const Comments = () => {
       refetch();
     }
   }, [deleteResponse, addResponse]);
+
+  if (isLoading || !response) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="pb-8">
