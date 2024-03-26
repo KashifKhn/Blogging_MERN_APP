@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import useFetch from "../../useFetch";
+import useFetch from "../useFetch";
 import { toast } from "react-toastify";
 
 const useFetchUpdateBlog = (id, newData) => {

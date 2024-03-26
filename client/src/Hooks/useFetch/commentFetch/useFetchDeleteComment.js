@@ -1,4 +1,4 @@
-import useFetch from "../../useFetch";
+import useFetch from "../useFetch";
 
 const useFetchDeleteComment = () => {
   const { response, error, isLoading, fetchData } = useFetch();
