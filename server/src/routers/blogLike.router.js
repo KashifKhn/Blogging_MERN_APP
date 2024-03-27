@@ -6,8 +6,9 @@ import {
   likeBlog,
   unlikeBlog,
 } from "../controllers/blogLike.controller.js";
+import { verifyJwt } from "../middlewares/auth.middleware.js";
 
-router.route("/:blogId").get(getBlogLikes).post(likeBlog);
-router.route("/:blogId/:likeId").delete(unlikeBlog);
+router.route("/:blogId").get(getBlogLikes).post(verifyJwt, likeBlog);
+router.route("/:blogId/:likeId").delete(verifyJwt, unlikeBlog);
 
 export default router;
