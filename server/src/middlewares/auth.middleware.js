@@ -28,7 +28,7 @@ const verifyJwt = asyncHandler(async (req, res, next) => {
     next();
   } catch (error) {
     
-    throw new ServerError(401, error?.message + " Refresh Token Expired" || "Unauthorized");
+    throw new ServerError(401, error?.message + " Access Token Expired");
   }
 });
 
