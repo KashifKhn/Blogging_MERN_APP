@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import { User } from "../models/User.model.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { ServerError } from "../utils/ServerError.js";
 
 const tokenGenerator = (user) => {
@@ -119,13 +120,31 @@ const logout = asyncHandler(async (req, res) => {
 });
 
 const refresh = asyncHandler(async (req, res) => {
-  const user = req.user;
-  
   const { refreshToken } = req.cookies;
 
-  if (refreshToken !== user.refreshToken) {
+  if (!refreshToken) {
+    throw new ServerError(401, "Refresh token not found");
+  }
+
+  const isRefreshTokenValid = jwt.verify(
+    refreshToken,
+    process.env.REFRESH_TOKEN_SECRET,
+    (err, decoded) => {
+      if (err) {
+        if (err.name === "TokenExpiredError") {
+          throw new ServerError(401, "Refresh token expired");
+        }
+        throw new ServerError(400, "Invalid refresh token");
+      }
+      return decoded;
+    }
+  );
+
+  if (!isRefreshTokenValid) {
     throw new ServerError(401, "Invalid refresh token");
   }
+
+  const user = await User.findById(isRefreshTokenValid._id);
 
   const { accessToken } = tokenGenerator(user);
 
