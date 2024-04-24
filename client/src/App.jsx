@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import AuthProvider from "./context/auth/AuthProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -26,7 +27,11 @@ const App = () => {
         },
         {
           path: ":id",
-          element: <SingleBlog />,
+          element: (
+            <ProtectedRoute>
+              <SingleBlog />,
+            </ProtectedRoute>
+          ),
         },
         {
           path: "signup",
@@ -38,11 +43,19 @@ const App = () => {
         },
         {
           path: "new",
-          element: <CreateNew />,
+          element: (
+            <ProtectedRoute>
+              <CreateNew />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "edit/:id",
-          element: <Edit />,
+          element: (
+            <ProtectedRoute>
+              <Edit />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "*",
