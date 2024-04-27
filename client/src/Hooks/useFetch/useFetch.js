@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axiosPublic } from "../../api/axiosInstance";
 
 const useFetch = (initialData = null) => {
   const [response, setResponse] = useState(initialData);
@@ -7,11 +7,10 @@ const useFetch = (initialData = null) => {
   const [error, setError] = useState(null);
   const abortController = new AbortController();
 
-  const fetchData = async (url, options) => {
-    const BASE_URL = `${import.meta.env.VITE_API_ENDPOINT}/${url}`;
+  const fetchData = async (url, options) => {    
     setIsLoading(true);
     try {
-      const res = await axios(BASE_URL, {
+      const res = await axiosPublic(url, {
         ...options,
         signal: abortController.signal,
       });
