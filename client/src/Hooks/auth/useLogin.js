@@ -6,6 +6,7 @@ const useLogin = () => {
     await fetchData("auth/login", {
       method: "POST",
       data: data,
+      withCredentials: true,
     });
   };
 
