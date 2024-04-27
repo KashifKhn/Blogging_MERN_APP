@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { axiosPrivate } from "../../api/axiosInstance";
+import useAxiosInterceptor from "../api/useAxiosInterceptor";
 
 const useFetchPrivate = (initialData = null) => {
   const [response, setResponse] = useState(initialData);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const abortController = new AbortController();
+  const axiosPrivate = useAxiosInterceptor();
 
   const fetchData = async (url, options) => {
     setIsLoading(true);
