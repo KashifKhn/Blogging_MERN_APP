@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import useFetch from "../useFetch";
+import useFetchPrivate from "../useFetchPrivate";
 
 const useFetchSingleBlog = (id) => {
-  const { response, isLoading, error, fetchData } = useFetch();
+  const { response, isLoading, error, fetchData } = useFetchPrivate();
 
   useEffect(() => {
     fetchData(`blogs/${id}`, { method: "GET" });

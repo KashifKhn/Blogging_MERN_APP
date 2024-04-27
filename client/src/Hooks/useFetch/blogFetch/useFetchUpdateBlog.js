@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import useFetch from "../useFetch";
 import { toast } from "react-toastify";
+import useFetchPrivate from "../useFetchPrivate";
 
 const useFetchUpdateBlog = (id, newData) => {
   const navigate = useNavigate();
-  const { response, isLoading, error, fetchData } = useFetch();
+  const { response, isLoading, error, fetchData } = useFetchPrivate();
   const updateBlog = async () => {
     await fetchData(`blogs/edit/${id}`, {
       method: "PUT",

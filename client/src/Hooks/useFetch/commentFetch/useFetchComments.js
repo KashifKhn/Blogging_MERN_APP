@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
-import useFetch from "../useFetch";
+import useFetchPrivate from "../useFetchPrivate";
 
 const useFetchComments = (blogId) => {
-  const { response, error, isLoading, fetchData } = useFetch();
+  const { response, error, isLoading, fetchData } = useFetchPrivate();
 
   const getComments = useCallback(async () => {
     await fetchData(`${blogId}/comments`);

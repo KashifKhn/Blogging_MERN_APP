@@ -1,7 +1,7 @@
-import useFetch from "../useFetch";
+import useFetchPrivate from "../useFetchPrivate";
 
 const useFetchAddComment = (data, blogId) => {
-  const { response, error, isLoading, fetchData } = useFetch();
+  const { response, error, isLoading, fetchData } = useFetchPrivate();
 
   const createNewBlog = async () => {
     fetchData(`${blogId}/comments`, {

@@ -1,7 +1,7 @@
-import useFetch from "../useFetch";
+import useFetchPrivate from "../useFetchPrivate";
 
 const useFetchDeleteComment = () => {
-  const { response, error, isLoading, fetchData } = useFetch();
+  const { response, error, isLoading, fetchData } = useFetchPrivate();
 
   const deleteComment = async (blogId, commentId) => {
     fetchData(`${blogId}/comments/${commentId}`, {
