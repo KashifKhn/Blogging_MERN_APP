@@ -16,7 +16,7 @@ const useFetch = (initialData = null) => {
       });
       setResponse(res);
     } catch (error) {
-      setError(error.message);
+      setError(error?.response?.data?.message);
     } finally {
       setIsLoading(false);
     }

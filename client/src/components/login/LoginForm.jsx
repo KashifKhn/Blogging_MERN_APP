@@ -10,7 +10,7 @@ import AuthContext from "../../context/auth/AuthContext";
 const LoginForm = () => {
   const { setAuthState } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
-  const { response, error, isLoading, loginUser } = useLogin();
+  const { response, error: loginError, isLoading, loginUser } = useLogin();
   const navigate = useNavigate();
   const {
     register,
@@ -41,19 +41,20 @@ const LoginForm = () => {
         navigate("/");
       }, 1500);
     }
-
-    if (error) {
-      toast.error(error.data.message);
+    if (loginError && !response) {
+      toast.error(loginError);
+      console.log(loginError);
     }
-  }, [response, error]);
+  }, [response, loginError]);
+
 
   return (
     <form
       className="space-y-4 md:space-y-6"
       onSubmit={handleSubmit(onSubmit)}>
-      {error && (
-        <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-          <span className="font-medium">Oops!</span> {error.message}
+      {(loginError && !response ) && (
+        <p className="mt-2 text-center text-sm text-red-600 dark:text-red-500">
+          <span className="font-medium">Oops!</span> {loginError}
         </p>
       )}
       <div>
@@ -78,7 +79,7 @@ const LoginForm = () => {
           placeholder="name@company.com"
           required=""
         />
-        {errors.email && (
+        {errors?.email && (
           <p className="mt-2 text-sm text-red-600 dark:text-red-500">
             <span className="font-medium">Oops!</span> {errors.email.message}
           </p>
@@ -114,7 +115,7 @@ const LoginForm = () => {
           
           `}
         />
-        {errors.password && (
+        {errors?.password && (
           <p className="mt-2 text-sm text-red-600 dark:text-red-500">
             <span className="font-medium">Oops!</span> {errors.password.message}
           </p>
