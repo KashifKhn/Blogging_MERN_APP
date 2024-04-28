@@ -41,7 +41,7 @@ const BlogCard = ({ blog }) => {
             </span>
           </div>
         </div>
-        <div className="max-w-[25%] w-full h-full hidden sm:block">
+        <div className="max-w-[25%] w-full h-full ml-auto hidden sm:block">
           <img
             className="rounded-lg object-cover min-h-[200px] w-full h-full"
             src={blog.imgUrl}
