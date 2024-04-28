@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetchSingleBlog from "../../Hooks/useFetch/blogFetch/useFetchSingleBlog";
 import { convertHtml, convertMarkdown } from "../../utils/blogConverter";
 import Header from "./Header";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 const SinglePageCard = () => {
   const { id } = useParams();
@@ -9,7 +10,7 @@ const SinglePageCard = () => {
   const blog = response?.data;
 
   if (isLoading || !blog) {
-    return <p>Loading...</p>;
+    return <LoadingSkeleton />;
   }
 
   if (error) {
