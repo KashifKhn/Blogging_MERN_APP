@@ -1,12 +1,18 @@
 import React from "react";
 import BlogCard from "./BlogCard";
 import useFetchBlogs from "../../Hooks/useFetch/blogFetch/useFetchBlogs";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 const BlogCardList = () => {
   const { blogs, isLoading, error } = useFetchBlogs();
 
   if (isLoading || !blogs) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <LoadingSkeleton />
+        <LoadingSkeleton />
+      </>
+    );
   }
 
   if (error) {
