@@ -6,7 +6,17 @@ const ProtectedRoute = ({ children }) => {
   const { authState } = useAuth();
   const location = useLocation();
   return (
-    <>{authState?.isAuthenticated ? children : <Navigate to="/login" />}</>
+    <>
+      {authState?.isAuthenticated ? (
+        children
+      ) : (
+        <Navigate
+          to="/login"
+          state={{ from: location }}
+          replace
+        />
+      )}
+    </>
   );
 };
 

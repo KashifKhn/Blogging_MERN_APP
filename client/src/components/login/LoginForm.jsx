@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ShowHideButton from "../signup/ShowHideButton";
 import useLogin from "../../Hooks/auth/useLogin";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,8 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { response, error: loginError, isLoading, loginUser } = useLogin();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   const {
     register,
     handleSubmit,
@@ -38,14 +40,17 @@ const LoginForm = () => {
       });
 
       setTimeout(() => {
-        navigate("/");
-      }, 1500);
+        navigate(from, { replace: true });
+      }, 500);
     }
     if (loginError && !response) {
       toast.error(loginError);
       console.log(loginError);
     }
   }, [response, loginError]);
+
+  console.log(location);
+  console.log(from);
 
   return (
     <form
