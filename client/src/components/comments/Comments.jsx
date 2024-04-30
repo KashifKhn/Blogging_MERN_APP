@@ -5,15 +5,18 @@ import { useParams } from "react-router-dom";
 import useFetchAddComment from "../../Hooks/useFetch/commentFetch/useFetchAddComment";
 import useFetchComments from "../../Hooks/useFetch/commentFetch/useFetchComments";
 import useFetchDeleteComment from "../../Hooks/useFetch/commentFetch/useFetchDeleteComment";
+import useAuth from "../../Hooks/auth/useAuth";
 
 const Comments = () => {
   const { id: blogId } = useParams();
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
+  const { authState } = useAuth();
 
   const { response: addResponse, handleSubmit } = useFetchAddComment(
     {
       comment: commentText,
+      author: authState?.id,
     },
     blogId
   );
@@ -26,7 +29,6 @@ const Comments = () => {
       setComments(response.data);
     }
   }, [response]);
-  
 
   useEffect(() => {
     if (deleteResponse || addResponse) {
