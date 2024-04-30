@@ -6,6 +6,10 @@ const commentSchema = new Schema(
       type: String,
       required: true,
     },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     likes: [
       {
         type: Schema.Types.ObjectId,
