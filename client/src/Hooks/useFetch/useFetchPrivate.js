@@ -17,7 +17,7 @@ const useFetchPrivate = (initialData = null) => {
       });
       setResponse(res);
     } catch (error) {
-      console.log(error.response.data)
+
       setError(error?.response?.data);
     } finally {
       setIsLoading(false);

@@ -13,9 +13,6 @@ const isAuthorComment = asyncHandler(async (req, res, next) => {
     throw new ServerError(404, "Comment not found");
   }
 
-  console.log(comment.author)
-  console.log(userId)
-  
 
   if (!comment.author.equals(userId)) {
     throw new ServerError(403, "You are not authorized to delete this comment");

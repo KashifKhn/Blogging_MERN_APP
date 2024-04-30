@@ -26,7 +26,6 @@ const getComments = asyncHandler(async (req, res) => {
 const createComment = asyncHandler(async (req, res) => {
   const { blogId } = req.params;
   const { comment, author } = req.body;
-  console.log(req.body);
 
   const blog = await Blog.findById(blogId);
   if (!blog) {

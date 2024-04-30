@@ -45,12 +45,11 @@ const LoginForm = () => {
     }
     if (loginError && !response) {
       toast.error(loginError);
-      console.log(loginError);
+
     }
   }, [response, loginError]);
 
-  console.log(location);
-  console.log(from);
+
 
   return (
     <form
