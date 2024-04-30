@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import useFetchDeleteBlog from "../../Hooks/useFetch/blogFetch/useFetchDeleteBlog";
 import { Link } from "react-router-dom";
-const OptionsButton = ({ blogId }) => {
+import useAuth from "../../Hooks/auth/useAuth";
+const OptionsButton = ({ blogId, userId }) => {
   const { handleDelete } = useFetchDeleteBlog();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { authState } = useAuth();
 
   return (
     <div>
@@ -30,25 +32,27 @@ const OptionsButton = ({ blogId }) => {
         <ul
           className="py-1 text-sm text-gray-700 dark:text-gray-200 z-50"
           aria-labelledby="dropdownMenuIconHorizontalButton">
-          <li>
-            <Link to={`/edit/${blogId}`}>
-              <button className="w-full flex justify-center py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-label="Write">
-                  <path
-                    d="M14 4a.5.5 0 0 0 0-1v1zm7 6a.5.5 0 0 0-1 0h1zm-7-7H4v1h10V3zM3 4v16h1V4H3zm1 17h16v-1H4v1zm17-1V10h-1v10h1zm-1 1a1 1 0 0 0 1-1h-1v1zM3 20a1 1 0 0 0 1 1v-1H3zM4 3a1 1 0 0 0-1 1h1V3z"
-                    fill="currentColor"></path>
-                  <path
-                    d="M17.5 4.5l-8.46 8.46a.25.25 0 0 0-.06.1l-.82 2.47c-.07.2.12.38.31.31l2.47-.82a.25.25 0 0 0 .1-.06L19.5 6.5m-2-2l2.32-2.32c.1-.1.26-.1.36 0l1.64 1.64c.1.1.1.26 0 .36L19.5 6.5m-2-2l2 2"
-                    stroke="currentColor"></path>
-                </svg>
-              </button>
-            </Link>
-          </li>
+          {userId === authState.id && (
+            <li>
+              <Link to={`/edit/${blogId}`}>
+                <button className="w-full flex justify-center py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-label="Write">
+                    <path
+                      d="M14 4a.5.5 0 0 0 0-1v1zm7 6a.5.5 0 0 0-1 0h1zm-7-7H4v1h10V3zM3 4v16h1V4H3zm1 17h16v-1H4v1zm17-1V10h-1v10h1zm-1 1a1 1 0 0 0 1-1h-1v1zM3 20a1 1 0 0 0 1 1v-1H3zM4 3a1 1 0 0 0-1 1h1V3z"
+                      fill="currentColor"></path>
+                    <path
+                      d="M17.5 4.5l-8.46 8.46a.25.25 0 0 0-.06.1l-.82 2.47c-.07.2.12.38.31.31l2.47-.82a.25.25 0 0 0 .1-.06L19.5 6.5m-2-2l2.32-2.32c.1-.1.26-.1.36 0l1.64 1.64c.1.1.1.26 0 .36L19.5 6.5m-2-2l2 2"
+                      stroke="currentColor"></path>
+                  </svg>
+                </button>
+              </Link>
+            </li>
+          )}
           <li>
             <button className="flex justify-center items-center w-full py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
               <svg
@@ -64,23 +68,25 @@ const OptionsButton = ({ blogId }) => {
               </svg>
             </button>
           </li>
-          <li>
-            <button
-              className="flex justify-center items-center w-full py-2 px-4 text-red-600 hover:bg-red-100 dark:hover:bg-gray-600 dark:hover:text-red-900"
-              onClick={() => handleDelete(blogId)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 32 32"
-                id="Delete">
-                <path
-                  d="M24.2,12.193,23.8,24.3a3.988,3.988,0,0,1-4,3.857H12.2a3.988,3.988,0,0,1-4-3.853L7.8,12.193a1,1,0,0,1,2-.066l.4,12.11a2,2,0,0,0,2,1.923h7.6a2,2,0,0,0,2-1.927l.4-12.106a1,1,0,0,1,2,.066Zm1.323-4.029a1,1,0,0,1-1,1H7.478a1,1,0,0,1,0-2h3.1a1.276,1.276,0,0,0,1.273-1.148,2.991,2.991,0,0,1,2.984-2.694h2.33a2.991,2.991,0,0,1,2.984,2.694,1.276,1.276,0,0,0,1.273,1.148h3.1A1,1,0,0,1,25.522,8.164Zm-11.936-1h4.828a3.3,3.3,0,0,1-.255-.944,1,1,0,0,0-.994-.9h-2.33a1,1,0,0,0-.994.9A3.3,3.3,0,0,1,13.586,7.164Zm1.007,15.151V13.8a1,1,0,0,0-2,0v8.519a1,1,0,0,0,2,0Zm4.814,0V13.8a1,1,0,0,0-2,0v8.519a1,1,0,0,0,2,0Z"
-                  fill="#ff0000"
-                  className="color000000 svgShape"></path>
-              </svg>
-            </button>
-          </li>
+          {userId === authState.id && (
+            <li>
+              <button
+                className="flex justify-center items-center w-full py-2 px-4 text-red-600 hover:bg-red-100 dark:hover:bg-gray-600 dark:hover:text-red-900"
+                onClick={() => handleDelete(blogId)}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 32 32"
+                  id="Delete">
+                  <path
+                    d="M24.2,12.193,23.8,24.3a3.988,3.988,0,0,1-4,3.857H12.2a3.988,3.988,0,0,1-4-3.853L7.8,12.193a1,1,0,0,1,2-.066l.4,12.11a2,2,0,0,0,2,1.923h7.6a2,2,0,0,0,2-1.927l.4-12.106a1,1,0,0,1,2,.066Zm1.323-4.029a1,1,0,0,1-1,1H7.478a1,1,0,0,1,0-2h3.1a1.276,1.276,0,0,0,1.273-1.148,2.991,2.991,0,0,1,2.984-2.694h2.33a2.991,2.991,0,0,1,2.984,2.694,1.276,1.276,0,0,0,1.273,1.148h3.1A1,1,0,0,1,25.522,8.164Zm-11.936-1h4.828a3.3,3.3,0,0,1-.255-.944,1,1,0,0,0-.994-.9h-2.33a1,1,0,0,0-.994.9A3.3,3.3,0,0,1,13.586,7.164Zm1.007,15.151V13.8a1,1,0,0,0-2,0v8.519a1,1,0,0,0,2,0Zm4.814,0V13.8a1,1,0,0,0-2,0v8.519a1,1,0,0,0,2,0Z"
+                    fill="#ff0000"
+                    className="color000000 svgShape"></path>
+                </svg>
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </div>
