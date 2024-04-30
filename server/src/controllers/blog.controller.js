@@ -1,4 +1,5 @@
 import { Blog } from "../models/blog.model.js";
+import { User } from "../models/User.model.js";
 import asyncHandler from "express-async-handler";
 import { ServerError } from "../utils/ServerError.js";
 
@@ -7,6 +8,14 @@ const getBlogs = asyncHandler(async (req, res) => {
   if (!blogs || blogs.length === 0) {
     throw new ServerError(404, "No blogs found in the database.");
   }
+  const authors = await User.find().select("_id email username fullname");
+  if (!authors) {
+    throw new ServerError(404, "Authors not found.");
+  }
+  blogs.forEach((blog) => {
+    const author = authors.find((author) => author._id.equals(blog.author));
+    blog.author = author;
+  });
   res.status(200).json(blogs);
 });
 
@@ -15,6 +24,14 @@ const getBlog = asyncHandler(async (req, res) => {
   if (!blog) {
     throw new ServerError(404, "Blog not found. Please check the id.");
   }
+  const authorId = blog.author;
+  const author = await User.findById(authorId).select(
+    "_id email username fullname"
+  );
+  if (!author) {
+    throw new ServerError(404, "Author not found.");
+  }
+  blog.author = author;
   res.status(200).json(blog);
 });
 
