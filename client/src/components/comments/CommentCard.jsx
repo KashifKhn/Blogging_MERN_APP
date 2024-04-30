@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getTimeAgo } from "../../utils/momentFunctions";
 import { useParams } from "react-router-dom";
+import useAuth from "../../Hooks/auth/useAuth";
 
 const CommentCard = ({ comment, handleDelete }) => {
   const { id: blogId } = useParams();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { authState } = useAuth();
 
   const handleDropdown = () => {
     if (dropdownOpen) {
@@ -61,18 +63,22 @@ const CommentCard = ({ comment, handleDelete }) => {
             <ul
               className="py-1 text-sm text-gray-700 dark:text-gray-200"
               aria-labelledby="dropdownMenuIconHorizontalButton">
-              <li>
-                <button className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Edit
-                </button>
-              </li>
-              <li>
-                <button
-                  className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={() => handleDelete(blogId, comment._id)}>
-                  Remove
-                </button>
-              </li>
+              {authState?.id === comment.author?._id && (
+                <>
+                  <li>
+                    <button className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      Edit
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      onClick={() => handleDelete(blogId, comment._id)}>
+                      Remove
+                    </button>
+                  </li>
+                </>
+              )}
               <li>
                 <button className="block w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                   Report
