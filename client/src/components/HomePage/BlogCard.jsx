@@ -14,9 +14,11 @@ const BlogCard = ({ blog }) => {
               <img
                 className="w-7 h-7 rounded-full"
                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                alt="Jese Leos avatar"
+                alt={`${blog?.author?.fullname} avatar`}
               />
-              <span className="font-medium dark:text-white">Jese Leos</span>
+              <span className="font-medium dark:text-white">
+                {blog?.author?.fullname}
+              </span>
             </div>
             <span className="text-sm">{getTimeAgo(blog.createdAt)}</span>
           </div>
