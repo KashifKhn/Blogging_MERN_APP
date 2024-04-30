@@ -3,6 +3,10 @@ import { Comment } from "./comment.model.js";
 
 const blogSchema = new Schema(
   {
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     title: {
       type: String,
     },
