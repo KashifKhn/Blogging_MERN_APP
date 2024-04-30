@@ -11,14 +11,14 @@ const Header = ({ blog }) => {
             <img
               className="mr-4 w-16 h-16 rounded-full"
               src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-              alt="Jese Leos"
+              alt={`${blog?.author?.fullname} avatar`}
             />
             <div>
               <a
                 href="#"
                 rel="author"
                 className="text-xl font-bold text-gray-900 dark:text-white">
-                Jese Leos
+                {blog?.author?.fullname}
               </a>
               <p className="text-base text-gray-500 dark:text-gray-400">
                 <time
