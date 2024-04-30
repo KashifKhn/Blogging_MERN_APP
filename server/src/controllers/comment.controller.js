@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
-import {Comment} from "../models/comment.model.js";
-import {Blog} from "../models/blog.model.js";
+import { Comment } from "../models/comment.model.js";
+import { Blog } from "../models/blog.model.js";
 import { ServerError } from "../utils/ServerError.js";
 
 const getComments = asyncHandler(async (req, res) => {
@@ -16,14 +16,16 @@ const getComments = asyncHandler(async (req, res) => {
 
 const createComment = asyncHandler(async (req, res) => {
   const { blogId } = req.params;
-  const { comment } = req.body;
+  const { comment, author } = req.body;
+  console.log(req.body);
+
   const blog = await Blog.findById(blogId);
   if (!blog) {
-   throw new ServerError(404, "Blog not found") 
+    throw new ServerError(404, "Blog not found");
   }
-  const newComment = new Comment({ comment });
-  if(!newComment) {
-    throw new ServerError(500, "Comment could not be created")
+  const newComment = new Comment({ comment, author });
+  if (!newComment) {
+    throw new ServerError(500, "Comment could not be created");
   }
   await newComment.save();
   blog.comments.push(newComment);
