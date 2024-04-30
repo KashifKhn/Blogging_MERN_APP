@@ -5,12 +5,13 @@ import {
   getComments,
 } from "../controllers/comment.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
+import { isAuthorComment } from "../middlewares/isAuthorComment.middleware.js";
 
 const router = express.Router({
   mergeParams: true,
 });
 
 router.route("/").get(getComments).post(verifyJwt, createComment);
-router.delete("/:commentId", verifyJwt, deleteComment);
+router.delete("/:commentId", verifyJwt, isAuthorComment, deleteComment);
 
 export default router;
