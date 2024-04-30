@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import { Comment } from "../models/comment.model.js";
 import { Blog } from "../models/blog.model.js";
+import { User } from "../models/User.model.js";
 import { ServerError } from "../utils/ServerError.js";
 
 const getComments = asyncHandler(async (req, res) => {
@@ -8,6 +9,14 @@ const getComments = asyncHandler(async (req, res) => {
   const comments = await Blog.findById(blogId)
     .populate("comments")
     .select("comments");
+
+  const authors = await User.find().select("_id email username fullname");
+
+  comments.comments.forEach((comment) => {
+    const author = authors.find((author) => author._id.equals(comment.author));
+    comment.author = author;
+  });
+
   if (!comments || comments.length === 0) {
     res.status(404).json({ message: "Blog not found" });
   }
