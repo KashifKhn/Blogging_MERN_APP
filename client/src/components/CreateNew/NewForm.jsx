@@ -3,6 +3,7 @@ import CommonForm from "../CommonForm";
 import useFetchAddBlog from "../../Hooks/useFetch/blogFetch/useFetchAddBlog";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/auth/useAuth";
 
 const NewForm = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const NewForm = () => {
   const [post, setPost] = useState("");
 
   const { response, isLoading, error, createNewBlog } = useFetchAddBlog();
+  const { authState } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +36,7 @@ const NewForm = () => {
       imgUrl: form.imgUrl,
       postFormat: form.postFormat,
       post: post,
+      author: authState.id,
     };
     await createNewBlog(data);
   };
