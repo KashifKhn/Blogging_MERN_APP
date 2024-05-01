@@ -1,6 +1,8 @@
 import React from "react";
+import useLogout from "../../Hooks/auth/useLogout";
 
 const UserSetting = () => {
+  const { logout } = useLogout();
   return (
     <div
       className="absolute top-8 right-5 bg-slate-100 z-50 my-4 w-56 text-base list-none rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
@@ -73,6 +75,7 @@ const UserSetting = () => {
         aria-labelledby="dropdown">
         <li>
           <button
+            onClick={logout}
             className="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
             Sign out
           </button>
