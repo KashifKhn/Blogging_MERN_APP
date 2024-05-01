@@ -1,15 +1,17 @@
 import React from "react";
 import useLogout from "../../Hooks/auth/useLogout";
+import useAuth from "../../Hooks/auth/useAuth";
 
 const UserSetting = () => {
   const { logout } = useLogout();
+  const { authState } = useAuth();
   return (
     <div
       className="absolute top-8 right-5 bg-slate-100 z-50 my-4 w-56 text-base list-none rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
       id="dropdown">
       <div className="py-3 px-4">
         <span className="block text-sm font-semibold text-gray-900 dark:text-white">
-          Neil sims
+          {authState.user}
         </span>
         <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
           name@flowbite.com
@@ -76,7 +78,7 @@ const UserSetting = () => {
         <li>
           <button
             onClick={logout}
-            className="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+            className="w-full text-left py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
             Sign out
           </button>
         </li>
