@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../../context/auth/AuthContext";
+import { axiosPrivate } from "../../api/axiosInstance";
 
 const useLogout = () => {
   const { logout: authLogout } = useContext(AuthContext);
