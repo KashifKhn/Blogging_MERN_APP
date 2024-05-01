@@ -5,7 +5,9 @@ export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
     id: "",
     accessToken: null,
-    user: null,
+    username: null,
+    fullname: null,
+    email: null,
     isAuthenticated: false,
   });
 
@@ -13,7 +15,9 @@ export const AuthProvider = ({ children }) => {
     setAuthState({
       id: "",
       accessToken: null,
-      user: null,
+      username: null,
+      fullname: null,
+      email: null,
       isAuthenticated: false,
     });
   };
