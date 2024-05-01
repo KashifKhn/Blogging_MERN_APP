@@ -33,9 +33,11 @@ const LoginForm = () => {
     if (response) {
       toast.success(response.data.message);
       setAuthState({
-        id: response.data.user._id,
-        accessToken: response.data.user.accessToken,
-        user: response.data.user.username,
+        id: response.data?.user?._id,
+        accessToken: response.data?.user?.accessToken,
+        username: response.data?.user?.username,
+        fullname: response.data?.user?.fullname,
+        email: response.data?.user?.email,
         isAuthenticated: true,
       });
 
@@ -45,11 +47,8 @@ const LoginForm = () => {
     }
     if (loginError && !response) {
       toast.error(loginError);
-
     }
   }, [response, loginError]);
-
-
 
   return (
     <form
