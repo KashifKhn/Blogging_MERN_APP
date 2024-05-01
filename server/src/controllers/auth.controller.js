@@ -35,7 +35,6 @@ const register = asyncHandler(async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-
   const user = new User({
     email,
     password: hashedPassword,
@@ -105,6 +104,8 @@ const login = asyncHandler(async (req, res) => {
       user: {
         _id: user._id,
         username: user.username,
+        fullname: user.fullname,
+        email: user.email,
         accessToken,
       },
     });
