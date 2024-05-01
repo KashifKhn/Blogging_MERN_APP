@@ -112,12 +112,36 @@ const login = asyncHandler(async (req, res) => {
 });
 
 const logout = asyncHandler(async (req, res) => {
-  const user = req.user;
+  const { refreshToken } = req.cookies;
+
+  if (!refreshToken) {
+    throw new ServerError(401, "Refresh token not found");
+  }
+
+  const { _id } = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+
+  const user = await User.findById(_id);
+
+  if (!user) {
+    throw new ServerError(404, "User not found");
+  }
+
   user.refreshToken = "";
   await user.save();
-  res.clearCookie("refreshToken").clearCookie("accessToken").status(200).json({
-    message: "User logged out successfully",
-  });
+  
+  const cookieOptions = {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  };
+
+  res
+    .clearCookie("refreshToken", cookieOptions)
+    .clearCookie("accessToken", cookieOptions)
+    .status(200)
+    .json({
+      message: "User logged out successfully",
+    });
 });
 
 const refresh = asyncHandler(async (req, res) => {
