@@ -128,7 +128,7 @@ const logout = asyncHandler(async (req, res) => {
 
   user.refreshToken = "";
   await user.save();
-  
+
   const cookieOptions = {
     httpOnly: true,
     secure: true,
@@ -185,6 +185,9 @@ const refresh = asyncHandler(async (req, res) => {
       user: {
         _id: user._id,
         username: user.username,
+        fullname: user.fullname,
+        email: user.email,
+
         accessToken,
       },
     });
