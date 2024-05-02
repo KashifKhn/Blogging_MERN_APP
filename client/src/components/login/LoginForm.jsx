@@ -8,7 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import useAuth from "../../Hooks/auth/useAuth";
 
 const LoginForm = () => {
-  const { setAuthState, } = useAuth();
+  const { setAuthState, persistent, setPersistent } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const { response, error: loginError, isLoading, loginUser } = useLogin();
   const navigate = useNavigate();
@@ -28,6 +28,10 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     await loginUser(data);
   };
+
+  useEffect(() => {
+    localStorage.setItem("persistent", persistent);
+  }, [persistent]);
 
   useEffect(() => {
     if (response) {
@@ -130,6 +134,8 @@ const LoginForm = () => {
               id="remember"
               aria-describedby="remember"
               type="checkbox"
+              checked={persistent}
+              onChange={() => setPersistent((prev) => !prev)}
               className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
               required=""
             />
