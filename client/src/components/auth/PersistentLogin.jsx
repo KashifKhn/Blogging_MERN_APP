@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/auth/useAuth";
 import useRefreshToken from "../../Hooks/auth/useRefreshToken";
+import { useLocation } from "react-router-dom";
+import LoadingSkeleton from "../HomePage/LoadingSkeleton";
 
 const PersistentLogin = ({ children }) => {
   const { authState, persistent } = useAuth();
+  const location = useLocation();
   const refresh = useRefreshToken();
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkRefreshToken = async () => {
@@ -17,14 +20,16 @@ const PersistentLogin = ({ children }) => {
       } catch (error) {
         console.log(error);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
-    !authState?.isAuthenticated && persistent && checkRefreshToken();
+    !authState?.isAuthenticated && persistent
+      ? checkRefreshToken()
+      : setIsLoading(false);
   }, [authState, refresh]);
 
-  return <>{children}</>;
+  return <>{isLoading ? <LoadingSkeleton /> : children}</>;
 };
 
 export default PersistentLogin;
