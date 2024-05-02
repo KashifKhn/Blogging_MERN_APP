@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/auth/useAuth";
 import useRefreshToken from "../../Hooks/auth/useRefreshToken";
 import { useLocation } from "react-router-dom";
 import LoadingSkeleton from "../HomePage/LoadingSkeleton";
+import PersistanceLoadingSkeleton from "./PersistanceLoadingSkeleton";
 
 const PersistentLogin = ({ children }) => {
   const { authState, persistent } = useAuth();
@@ -29,7 +30,7 @@ const PersistentLogin = ({ children }) => {
       : setIsLoading(false);
   }, [authState, refresh]);
 
-  return <>{isLoading ? <LoadingSkeleton /> : children}</>;
+  return <>{isLoading ? <PersistanceLoadingSkeleton /> : children}</>;
 };
 
 export default PersistentLogin;
