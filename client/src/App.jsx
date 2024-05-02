@@ -13,13 +13,18 @@ import AuthProvider from "./context/auth/AuthProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import PersistentLogin from "./components/auth/PersistentLogin";
 
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
       errorElement: <Error />,
-      element: <MainLayouts />,
+      element: (
+        <PersistentLogin>
+          <MainLayouts />
+        </PersistentLogin>
+      ),
       children: [
         {
           index: true,
