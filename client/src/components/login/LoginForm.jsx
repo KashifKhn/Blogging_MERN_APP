@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation } from "react-router-dom";
 import ShowHideButton from "../signup/ShowHideButton";
 import useLogin from "../../Hooks/auth/useLogin";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import AuthContext from "../../context/auth/AuthContext";
+import useAuth from "../../Hooks/auth/useAuth";
 
 const LoginForm = () => {
-  const { setAuthState } = useContext(AuthContext);
+  const { setAuthState, } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const { response, error: loginError, isLoading, loginUser } = useLogin();
   const navigate = useNavigate();
