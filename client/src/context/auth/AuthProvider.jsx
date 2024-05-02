@@ -11,7 +11,9 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: false,
   });
 
-  const [persistent, setPersistent] = useState(false);
+  const [persistent, setPersistent] = useState(
+    localStorage.getItem("persistent") || false
+  );
 
   const logout = () => {
     setAuthState({
