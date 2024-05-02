@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   });
 
   const [persistent, setPersistent] = useState(
-    localStorage.getItem("persistent") || false
+    JSON.parse(localStorage.getItem("persistent")) || false
   );
 
   const logout = () => {
