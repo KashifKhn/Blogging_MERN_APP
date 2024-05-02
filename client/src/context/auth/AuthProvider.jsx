@@ -11,6 +11,8 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: false,
   });
 
+  const [persistent, setPersistent] = useState(false);
+
   const logout = () => {
     setAuthState({
       id: "",
@@ -23,7 +25,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authState, setAuthState, logout }}>
+    <AuthContext.Provider
+      value={{ authState, setAuthState, persistent, setPersistent, logout }}>
       {children}
     </AuthContext.Provider>
   );
