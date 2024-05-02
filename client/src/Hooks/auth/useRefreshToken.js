@@ -12,8 +12,13 @@ const useRefreshToken = () => {
         withCredentials: true,
       });
 
-      setAuthState((prev) => {
-        return { ...prev, accessToken: response.data.user.accessToken };
+      setAuthState({
+        id: response.data.user._id,
+        accessToken: response.data.user.accessToken,
+        username: response.data.user.username,
+        fullname: response.data.user.fullname,
+        email: response.data.user.email,
+        isAuthenticated: true,
       });
       return response.data.user.accessToken;
     } catch (error) {
