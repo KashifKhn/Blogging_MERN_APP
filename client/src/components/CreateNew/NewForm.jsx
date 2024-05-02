@@ -28,8 +28,22 @@ const NewForm = () => {
     });
   };
 
+  const validateForm = () => {
+    if (
+      form.title.trim() === "" ||
+      form.description.trim() === "" ||
+      form.imgUrl.trim() === "" ||
+      post.trim() === ""
+    ) {
+      toast.error("All fields are required!");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
     const data = {
       title: form.title,
       description: form.description,
