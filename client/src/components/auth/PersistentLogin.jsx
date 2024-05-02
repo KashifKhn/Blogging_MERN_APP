@@ -3,7 +3,7 @@ import useAuth from "../../Hooks/auth/useAuth";
 import useRefreshToken from "../../Hooks/auth/useRefreshToken";
 
 const PersistentLogin = ({ children }) => {
-  const { authState } = useAuth();
+  const { authState, persistent } = useAuth();
   const refresh = useRefreshToken();
   const [loading, setLoading] = useState(true);
 
@@ -21,10 +21,10 @@ const PersistentLogin = ({ children }) => {
       }
     };
 
-    checkRefreshToken();
+    !authState?.isAuthenticated && persistent && checkRefreshToken();
   }, [authState, refresh]);
 
-  return <>{ loading ? "loading..." : children}</>;
+  return <>{children}</>;
 };
 
 export default PersistentLogin;
