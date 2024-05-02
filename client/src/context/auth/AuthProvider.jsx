@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
       email: null,
       isAuthenticated: false,
     });
+    setPersistent(false);
   };
 
   return (
