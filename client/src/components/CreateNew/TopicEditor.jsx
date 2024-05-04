@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { topics } from "./suggestion";
 import { WithContext as ReactTags } from "react-tag-input";
 
 const KeyCodes = {
@@ -35,7 +36,7 @@ const TopicEditor = () => {
       {" "}
       <ReactTags
         tags={tags}
-        // suggestions={suggestions}
+        suggestions={topics}
         delimiters={delimiters}
         handleDelete={handleDelete}
         handleAddition={handleAddition}
