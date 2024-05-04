@@ -16,6 +16,9 @@ const blogSchema = new Schema(
     post: {
       type: String,
     },
+    topics: {
+      type: [String],
+    },
     postFormat: {
       type: String,
       enum: ["editor", "markdown"],
