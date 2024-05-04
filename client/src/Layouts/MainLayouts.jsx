@@ -6,7 +6,7 @@ const MainLayouts = () => {
   return (
     <>
       <Header />
-      <main className="dark:bg-gray-900">
+      <main className="dark:bg-gray-900 min-h-screen">
         <div className="container">
           <Outlet />
         </div>
