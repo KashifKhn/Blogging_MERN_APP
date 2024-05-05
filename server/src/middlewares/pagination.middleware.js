@@ -1,4 +1,4 @@
-import { ServerError } from "../utils/ServerError";
+import { ServerError } from "../utils/ServerError.js";
 import asyncHandler from "express-async-handler";
 
 function pagination(model) {
@@ -34,7 +34,7 @@ function pagination(model) {
       res.paginatedResults = results;
       next();
     } catch (e) {
-      ServerError(500, "Error in pagination middleware." + e.message);
+      throw new ServerError(500, "Error in pagination middleware." + e?.message);
     }
   });
 }
