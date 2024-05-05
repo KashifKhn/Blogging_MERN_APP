@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CommonForm from "../CommonForm";
 import useFetchAddBlog from "../../Hooks/useFetch/blogFetch/useFetchAddBlog";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/auth/useAuth";
 
@@ -9,7 +9,6 @@ const NewForm = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     title: "",
-    description: "",
     imgUrl: "",
     postFormat: "editor",
   });
@@ -32,10 +31,9 @@ const NewForm = () => {
   const validateForm = () => {
     if (
       form.title.trim() === "" ||
-      form.description.trim() === "" ||
       form.imgUrl.trim() === "" ||
       post.trim() === "" ||
-      topic.length === 0
+      topic.length <= 0
     ) {
       toast.error("All fields are required!");
       return false;
@@ -45,12 +43,14 @@ const NewForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!validateForm()) return;
+    const topics = topic.map((tag) => tag.text);
     const data = {
       title: form.title,
-      description: form.description,
       imgUrl: form.imgUrl,
       postFormat: form.postFormat,
+      topics: topics,
       post: post,
       author: authState.id,
     };
@@ -84,6 +84,7 @@ const NewForm = () => {
         setTopic={setTopic}
         parentComp="new"
       />
+      <ToastContainer />
     </div>
   );
 };
