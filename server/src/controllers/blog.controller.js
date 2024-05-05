@@ -16,7 +16,11 @@ const getBlogs = asyncHandler(async (req, res) => {
     const author = authors.find((author) => author._id.equals(blog.author));
     blog.author = author;
   });
-  res.status(200).json(blogs);
+  if (!req.query.page || !req.query.limit) {
+    res.status(200).json(blogs);
+  } else {
+    res.status(200).json(res.paginatedResults);
+  }
 });
 
 const getBlog = asyncHandler(async (req, res) => {
