@@ -1,7 +1,8 @@
 import { ServerError } from "../utils/ServerError";
+import asyncHandler from "express-async-handler";
 
 function pagination(model) {
-  return async (req, res, next) => {
+  return asyncHandler(async (req, res, next) => {
     if (!req.query.page || !req.query.limit) {
       next();
     }
@@ -35,7 +36,7 @@ function pagination(model) {
     } catch (e) {
       ServerError(500, "Error in pagination middleware." + e.message);
     }
-  };
+  });
 }
 
 export { pagination };
