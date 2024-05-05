@@ -4,7 +4,7 @@ import asyncHandler from "express-async-handler";
 function pagination(model) {
   return asyncHandler(async (req, res, next) => {
     if (!req.query.page || !req.query.limit) {
-      next();
+      return next();
     }
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
@@ -34,7 +34,10 @@ function pagination(model) {
       res.paginatedResults = results;
       next();
     } catch (e) {
-      throw new ServerError(500, "Error in pagination middleware." + e?.message);
+      throw new ServerError(
+        500,
+        "Error in pagination middleware." + e?.message
+      );
     }
   });
 }
