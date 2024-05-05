@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { topics } from "./suggestion";
 import { WithContext as ReactTags } from "react-tag-input";
 
-const TopicEditor = () => {
-  const [tags, setTags] = useState([]);
-
+const TopicEditor = ({ topic, setTopic }) => {
   const KeyCodes = {
     comma: 188,
     enter: 13,
@@ -13,19 +11,19 @@ const TopicEditor = () => {
   const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
   const handleDelete = (i) => {
-    setTags(tags.filter((tag, index) => index !== i));
+    setTopic(topic.filter((tag, index) => index !== i));
   };
 
   const handleAddition = (tag) => {
-    setTags([...tags, tag]);
+    setTopic([...topic, tag]);
   };
 
   const handleDrag = (tag, currPos, newPos) => {
-    const newTags = tags.slice();
+    const newTags = topic.slice();
 
     newTags.splice(currPos, 1);
     newTags.splice(newPos, 0, tag);
-    setTags(newTags);
+    setTopic(newTags);
   };
 
   const handleTagClick = (index) => {
@@ -62,7 +60,7 @@ const TopicEditor = () => {
     <div className="">
       <ReactTags
         classNames={className}
-        tags={tags}
+        tags={topic}
         suggestions={topics}
         delimiters={delimiters}
         handleDelete={handleDelete}

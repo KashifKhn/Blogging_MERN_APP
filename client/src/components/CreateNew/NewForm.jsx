@@ -14,6 +14,8 @@ const NewForm = () => {
     postFormat: "editor",
   });
   const [post, setPost] = useState("");
+  const [topic, setTopic] = useState([]);
+
 
   const { response, isLoading, error, createNewBlog } = useFetchAddBlog();
   const { authState } = useAuth();
@@ -78,6 +80,8 @@ const NewForm = () => {
         post={post}
         setPost={setPost}
         handleSubmit={handleSubmit}
+        topic={topic}
+        setTopic={setTopic}
         parentComp="new"
       />
     </div>

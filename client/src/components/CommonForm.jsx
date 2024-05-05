@@ -9,6 +9,8 @@ const CommonForm = ({
   setPost,
   handleSubmit,
   parentComp,
+  topic,
+  setTopic,
 }) => {
   const inputRef = useRef(null);
   useEffect(() => {
@@ -114,7 +116,10 @@ const CommonForm = ({
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               Topics
             </label>
-            <TopicEditor />
+            <TopicEditor
+              topic={topic}
+              setTopic={setTopic}
+            />
           </div>
         )}
         {form.postFormat === "editor" ? (
