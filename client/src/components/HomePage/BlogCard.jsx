@@ -36,8 +36,13 @@ const BlogCard = ({ blog }) => {
           </div>
           <div className="flex gap-4 items-center">
             <span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-              programming languages
+              {blog.topics[0]}
             </span>
+            {blog.topics.length > 1 && (
+              <span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+                {blog.topics[1]}
+              </span>
+            )}
             <span className="text-gray-500 dark:text-gray-400 text-sm">
               {findReadTime(blog.post) + " min read"}
             </span>
