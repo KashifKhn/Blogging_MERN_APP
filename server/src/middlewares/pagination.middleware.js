@@ -11,7 +11,9 @@ function pagination(model) {
 
     const results = {};
 
-    if (endIndex < (await model.countDocuments().exec())) {
+    const total = await model.countDocuments().exec();
+    results.total = total;
+    if (endIndex < total) {
       results.next = {
         page: page + 1,
         limit: limit,
@@ -24,8 +26,6 @@ function pagination(model) {
         limit: limit,
       };
     }
-    const total = await model.countDocuments().exec();
-    results.total = total;
     try {
       results.results = await model.find().limit(limit).skip(startIndex).exec();
       res.paginatedResults = results;
