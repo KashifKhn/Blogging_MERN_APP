@@ -16,7 +16,6 @@ const NewForm = () => {
   const [post, setPost] = useState("");
   const [topic, setTopic] = useState([]);
 
-
   const { response, isLoading, error, createNewBlog } = useFetchAddBlog();
   const { authState } = useAuth();
 
@@ -35,7 +34,8 @@ const NewForm = () => {
       form.title.trim() === "" ||
       form.description.trim() === "" ||
       form.imgUrl.trim() === "" ||
-      post.trim() === ""
+      post.trim() === "" ||
+      topic.length === 0
     ) {
       toast.error("All fields are required!");
       return false;
