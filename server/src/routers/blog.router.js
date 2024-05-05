@@ -8,10 +8,12 @@ import {
 } from "../controllers/blog.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
 import { isAuthorBlog } from "../middlewares/isAuthorBlog.middleware.js";
+import { pagination } from "../middlewares/pagination.middleware.js";
+import { Blog } from "../models/blog.model.js";
 
 const router = Router();
 
-router.get("/", getBlogs);
+router.get("/", pagination(Blog), getBlogs);
 
 router.use(verifyJwt);
 
