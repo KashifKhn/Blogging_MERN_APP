@@ -20,6 +20,9 @@ const getComments = asyncHandler(async (req, res) => {
   if (!comments || comments.length === 0) {
     res.status(404).json({ message: "Blog not found" });
   }
+  if (req.query.page && req.query.limit) {
+    return res.status(200).json(res.paginatedResults);
+  }
   res.status(200).json(comments.comments);
 });
 
