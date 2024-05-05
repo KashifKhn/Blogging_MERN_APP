@@ -20,6 +20,16 @@ const SinglePageCard = () => {
   return (
     <article className="pt-4 pb-16 px-4 lg:pt-8 lg:pb-24 antialiased mx-auto w-full  dark:bg-gray-900 ">
       <Header blog={blog} />
+      <div className="flex flex-wrap gap-2">
+        {blog?.topics.map((topic) => (
+          <span
+            key={topic}
+            className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+            {topic}
+          </span>
+        ))}
+      </div>
+
       <figure className=" mx-auto mt-8">
         <img
           className="h-auto w-full rounded-lg"
