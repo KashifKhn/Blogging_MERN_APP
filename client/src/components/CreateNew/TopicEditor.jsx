@@ -57,9 +57,11 @@ const TopicEditor = () => {
         placeholder="Add Topic of Interest, Enter at least 5 topics"
         handleDrag={handleDrag}
         handleTagClick={handleTagClick}
-        maxLength={5}
+        allowUnique={true}
+        maxTags={5}
         inputFieldPosition="bottom"
         autocomplete
+        allowAdditionFromPaste
       />
     </div>
   );
