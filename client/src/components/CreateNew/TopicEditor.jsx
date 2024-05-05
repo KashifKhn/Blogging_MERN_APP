@@ -45,6 +45,19 @@ const TopicEditor = () => {
       "suggestionsClass dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500",
   };
 
+  const handleFilterSuggestions = (
+    textInputValue,
+    possibleSuggestionsArray
+  ) => {
+    const lowerCaseQuery = textInputValue.toLowerCase();
+    const filteredSuggestions = possibleSuggestionsArray.filter(
+      (suggestion) => {
+        return suggestion.text.toLowerCase().includes(lowerCaseQuery);
+      }
+    );
+    return filteredSuggestions;
+  };
+
   return (
     <div className="">
       <ReactTags
@@ -57,6 +70,7 @@ const TopicEditor = () => {
         placeholder="Add Topic of Interest, Enter at least 5 topics"
         handleDrag={handleDrag}
         handleTagClick={handleTagClick}
+        handleFilterSuggestions={handleFilterSuggestions}
         allowUnique={true}
         maxTags={5}
         inputFieldPosition="bottom"
