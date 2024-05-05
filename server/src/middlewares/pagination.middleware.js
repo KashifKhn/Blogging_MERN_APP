@@ -1,3 +1,5 @@
+import { ServerError } from "../utils/ServerError";
+
 function pagination(model) {
   return async (req, res, next) => {
     if (!req.query.page || !req.query.limit) {
@@ -31,7 +33,7 @@ function pagination(model) {
       res.paginatedResults = results;
       next();
     } catch (e) {
-      res.status(500).json({ message: e.message });
+      ServerError(500, "Error in pagination middleware." + e.message);
     }
   };
 }
