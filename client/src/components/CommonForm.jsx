@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import Editor from "./Editor";
+import TopicEditor from "./CreateNew/TopicEditor";
 
 const CommonForm = ({
   form,
@@ -105,6 +106,17 @@ const CommonForm = ({
             </label>
           </div>
         </div>
+
+        {parentComp === "new" && (
+          <div className="sm:col-span-2">
+            <label
+              htmlFor="Topic"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Topics
+            </label>
+            <TopicEditor />
+          </div>
+        )}
         {form.postFormat === "editor" ? (
           <div className="sm:col-span-2 mb-16 sm:mb-5">
             <Editor
