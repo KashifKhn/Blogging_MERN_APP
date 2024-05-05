@@ -54,6 +54,7 @@ const TopicEditor = () => {
         delimiters={delimiters}
         handleDelete={handleDelete}
         handleAddition={handleAddition}
+        placeholder="Add Topic of Interest, Enter at least 5 topics"
         handleDrag={handleDrag}
         handleTagClick={handleTagClick}
         maxLength={5}
