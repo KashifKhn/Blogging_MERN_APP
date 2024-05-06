@@ -1,13 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { convertHtml, convertMarkdown } from "../../utils/blogConverter";
 import findReadTime from "../../utils/findReadTime";
 import { getTimeAgo } from "../../utils/momentFunctions";
 
-const BlogCard = ({ blog }) => {
+const BlogCard = forwardRef(({ blog }, ref) => {
   return (
     <Link to={`/${blog._id}`}>
-      <article className="p-4 rounded-lg flex border-b-4 border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-none">
+      <article
+        ref={ref}
+        className="p-4 rounded-lg flex border-b-4 border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 transition-all duration-300 hover:shadow-none">
         <div className="max-w-[75%] pr-4">
           <div className="flex gap-4 items-center mb-4 text-gray-500">
             <div className="flex items-center space-x-4">
@@ -58,6 +60,6 @@ const BlogCard = ({ blog }) => {
       </article>
     </Link>
   );
-};
+});
 
 export default BlogCard;
