@@ -18,11 +18,19 @@ const getComments = asyncHandler(async (req, res) => {
   });
 
   if (!comments || comments.length === 0) {
-    res.status(404).json({ message: "Blog not found" });
+    throw new ServerError(404, "No comments found in the database.");
   }
   if (req.query.page && req.query.limit) {
-    return res.status(200).json(res.paginatedResults);
+    const paginatedResults = res.paginatedResults;
+    paginatedResults.results.forEach((comment) => {
+      const author = authors.find((author) =>
+        author._id.equals(comment.author)
+      );
+      comment.author = author;
+    });
+    res.status(200).json(paginatedResults);
   }
+
   res.status(200).json(comments.comments);
 });
 
