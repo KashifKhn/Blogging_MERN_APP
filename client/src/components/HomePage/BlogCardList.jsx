@@ -27,10 +27,10 @@ const BlogCardList = () => {
   );
 
   useEffect(() => {
-    fetchBlogs(page, 10);
+    fetchBlogs(page, 5);
   }, [page]);
 
-  if (isLoading || !blogs) {
+  if (!blogs) {
     return (
       <>
         <LoadingSkeleton />
@@ -38,7 +38,6 @@ const BlogCardList = () => {
       </>
     );
   }
-
   if (error) {
     return <div>{error}</div>;
   }
@@ -67,6 +66,7 @@ const BlogCardList = () => {
           })}
         </div>
       </div>
+      {isLoading && <LoadingSkeleton />}
     </section>
   );
 };
