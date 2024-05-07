@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { getTimeAgo } from "../../utils/momentFunctions";
 import { useParams } from "react-router-dom";
 import useAuth from "../../Hooks/auth/useAuth";
 
-const CommentCard = ({ comment, handleDelete }) => {
+const CommentCard = forwardRef(({ comment, handleDelete }, ref) => {
   const { id: blogId } = useParams();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { authState } = useAuth();
@@ -17,6 +17,7 @@ const CommentCard = ({ comment, handleDelete }) => {
   return (
     <article
       onClick={handleDropdown}
+      ref={ref}
       className="p-6 text-base border-b border-gray-300 dark:border-gray-700 rounded-lg dark:bg-gray-900">
       <div className="flex justify-between items-center mb-2 relative">
         <div className="flex items-center">
@@ -112,6 +113,6 @@ const CommentCard = ({ comment, handleDelete }) => {
       </div>
     </article>
   );
-};
+});
 
 export default CommentCard;
