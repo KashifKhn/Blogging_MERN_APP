@@ -26,10 +26,6 @@ const TopicEditor = ({ topic, setTopic }) => {
     setTopic(newTags);
   };
 
-  const handleTagClick = (index) => {
-    console.log("The tag at index " + index + " was clicked");
-  };
-
   const className = {
     tags: "tagsClass  flex flex-col flex-wrap p-1.5 border border-gray-300 rounded-lg dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500",
     tagInputField:
@@ -67,7 +63,6 @@ const TopicEditor = ({ topic, setTopic }) => {
         handleAddition={handleAddition}
         placeholder="Add Topic of Interest, Enter at least 5 topics"
         handleDrag={handleDrag}
-        handleTagClick={handleTagClick}
         handleFilterSuggestions={handleFilterSuggestions}
         allowUnique={true}
         maxTags={5}

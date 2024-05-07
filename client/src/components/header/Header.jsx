@@ -14,7 +14,6 @@ const Header = () => {
         setPersistent(false);
       }
       if (!persistent) {
-        console.log("logging out");
         logout();
         setPersistent(false);
       }

@@ -21,7 +21,6 @@ const getBlogs = asyncHandler(async (req, res) => {
   } else {
     const paginatedResults = res.paginatedResults;
     paginatedResults.results.forEach((blog) => {
-      console.log(blog);
       const author = authors.find((author) => author._id.equals(blog.author));
       blog.author = author;
     });
