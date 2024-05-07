@@ -4,13 +4,20 @@ import useFetch from "../useFetch";
 const useFetchBlogs = () => {
   const [hasMore, setHasMore] = useState(false);
   const { response, isLoading, error, fetchData, abortFetch } = useFetch();
-  const blogs = response?.data?.results;
+  const [blogs, setBlogs] = useState([]);
+  // const blogs = response?.data?.results;
 
   useEffect(() => {
     if (response?.data?.next) {
       setHasMore(true);
     } else {
       setHasMore(false);
+    }
+
+    if (response?.data?.previous) {
+      setBlogs((prevBlogs) => [...prevBlogs, ...response.data.results]);
+    } else {
+      setBlogs(response?.data?.results);
     }
   }, [response]);
 
@@ -22,9 +29,9 @@ const useFetchBlogs = () => {
     await fetchData("blogs");
   };
 
-  useEffect(() => {
-    fetchBlogs(1, 5);
-  }, []);
+  // useEffect(() => {
+  //   fetchBlogs(1, 5);
+  // }, []);
 
   return { blogs, isLoading, error, fetchBlogs, hasMore };
 };
