@@ -8,6 +8,7 @@ import useFetchDeleteComment from "../../Hooks/useFetch/commentFetch/useFetchDel
 import useAuth from "../../Hooks/auth/useAuth";
 
 const Comments = () => {
+  const COMMENT_PER_PAGE = 10;
   const { id: blogId } = useParams();
   const [commentText, setCommentText] = useState("");
   const [page, setPage] = useState(1);
@@ -44,13 +45,13 @@ const Comments = () => {
   );
 
   useEffect(() => {
-    getComments(page, 10);
+    getComments(page, COMMENT_PER_PAGE);
   }, [page]);
 
   useEffect(() => {
     if (deleteResponse || addResponse) {
       setCommentText("");
-      refetch();
+      getComments(page, COMMENT_PER_PAGE);
     }
   }, [deleteResponse, addResponse]);
 
@@ -79,9 +80,9 @@ const Comments = () => {
         lastCommentElementRef={lastCommentElementRef}
       />
       {isLoading && (
-        <div role="status"
-        className="flex justify-center items-center h-20 w-full dark:text-gray-200 text-gray-600"
-        >
+        <div
+          role="status"
+          className="flex justify-center items-center h-20 w-full dark:text-gray-200 text-gray-600">
           <svg
             aria-hidden="true"
             className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
