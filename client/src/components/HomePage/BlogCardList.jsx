@@ -27,7 +27,8 @@ const BlogCardList = () => {
   );
 
   useEffect(() => {
-    fetchBlogs(page, 5);
+    const BLOG_PER_PAGE = 5;
+    fetchBlogs(page, BLOG_PER_PAGE);
   }, [page]);
 
   if (!blogs) {
