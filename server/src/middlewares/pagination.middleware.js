@@ -46,7 +46,6 @@ function pagination(model) {
         }
         results.results = comments.comments;
         res.paginatedResults = results;
-        console.log("results", results);
         return next();
       }
 
