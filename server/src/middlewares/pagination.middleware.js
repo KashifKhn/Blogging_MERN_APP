@@ -40,6 +40,7 @@ function pagination(model) {
           .select("comments")
           .limit(limit)
           .skip(startIndex)
+          .sort({ createdAt: -1 })
           .exec();
         if (!comments || comments.length === 0) {
           throw new ServerError(404, "No comments found in the database.");
@@ -49,7 +50,12 @@ function pagination(model) {
         return next();
       }
 
-      results.results = await model.find().limit(limit).skip(startIndex).exec();
+      results.results = await model
+        .find()
+        .limit(limit)
+        .skip(startIndex)
+        .sort({ createdAt: -1 })
+        .exec();
       res.paginatedResults = results;
       next();
     } catch (e) {
