@@ -7,7 +7,7 @@ import {
 import { verifyJwt } from "../middlewares/auth.middleware.js";
 import { isAuthorComment } from "../middlewares/isAuthorComment.middleware.js";
 import { pagination } from "../middlewares/pagination.middleware.js";
-import { Comment } from "../models/comment.model.js";
+import { Blog } from "../models/blog.model.js";
 
 const router = express.Router({
   mergeParams: true,
@@ -15,7 +15,7 @@ const router = express.Router({
 
 router
   .route("/")
-  .get(pagination(Comment), getComments)
+  .get(pagination(Blog), getComments)
   .post(verifyJwt, createComment);
 router.delete("/:commentId", verifyJwt, isAuthorComment, deleteComment);
 

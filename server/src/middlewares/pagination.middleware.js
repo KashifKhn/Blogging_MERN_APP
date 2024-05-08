@@ -6,6 +6,8 @@ function pagination(model) {
     if (!req.query.page || !req.query.limit) {
       return next();
     }
+    const { blogId } = req.params;
+
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
 
@@ -30,6 +32,24 @@ function pagination(model) {
       };
     }
     try {
+      if (blogId) {
+        // results.results = await model.findById(blogId).populate("").limit(limit).skip(startIndex).exec();
+        const comments = await model
+          .findById(blogId)
+          .populate("comments")
+          .select("comments")
+          .limit(limit)
+          .skip(startIndex)
+          .exec();
+        if (!comments || comments.length === 0) {
+          throw new ServerError(404, "No comments found in the database.");
+        }
+        results.results = comments.comments;
+        res.paginatedResults = results;
+        console.log("results", results);
+        return next();
+      }
+
       results.results = await model.find().limit(limit).skip(startIndex).exec();
       res.paginatedResults = results;
       next();
