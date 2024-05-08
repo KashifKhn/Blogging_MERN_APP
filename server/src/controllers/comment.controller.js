@@ -28,9 +28,8 @@ const getComments = asyncHandler(async (req, res) => {
       );
       comment.author = author;
     });
-    res.status(200).json(paginatedResults);
+    return res.status(200).json(paginatedResults);
   }
-
   res.status(200).json(comments.comments);
 });
 
