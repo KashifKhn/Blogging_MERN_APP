@@ -33,14 +33,16 @@ function pagination(model) {
     }
     try {
       if (blogId) {
-        // results.results = await model.findById(blogId).populate("").limit(limit).skip(startIndex).exec();
         const comments = await model
           .findById(blogId)
-          .populate("comments")
-          .select("comments")
-          .limit(limit)
-          .skip(startIndex)
-          .sort({ createdAt: -1 })
+          .populate({
+            path: "comments",
+            options: {
+              sort: { createdAt: -1 },
+              limit: limit,
+              skip: startIndex,
+            },
+          })
           .exec();
         if (!comments || comments.length === 0) {
           throw new ServerError(404, "No comments found in the database.");
