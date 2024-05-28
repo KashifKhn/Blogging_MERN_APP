@@ -30,6 +30,16 @@ export default {
           950: "#172554",
         },
       },
+      backgroundImage: {
+        "custom-gradient-ht-light":
+          "linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.75) 25%, rgba(255, 255, 255, 0.9) 50%, rgb(255, 255, 255) 75%)",
+        "custom-gradient-ht-dark":
+          "linear-gradient(90deg, rgba(17, 24, 39, 0.7) 0%, rgba(17, 24, 39, 0.75) 25%, rgba(17, 24, 39, 0.9) 50%, rgb(17, 24, 39) 75%)",
+        "custom-gradient-hz-light":
+          "linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.75) 25%, rgba(255, 255, 255, 0.9) 50%, rgb(255, 255, 255) 75%)",
+        "custom-gradient-hz-dark":
+          "linear-gradient(270deg, rgba(17, 24, 39, 0.7) 0%, rgba(17, 24, 39, 0.75) 25%, rgba(17, 24, 39, 0.9) 50%, rgb(17, 24, 39) 75%)",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
