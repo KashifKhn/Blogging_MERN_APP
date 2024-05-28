@@ -12,6 +12,11 @@ const useFetchAddComment = (data, blogId) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (e.target.comment.value.trim() === "") {
+      e.target.comment.value = "";
+      return;
+    }
+
     await createNewBlog();
   };
   return { response, error, isLoading, handleSubmit };
