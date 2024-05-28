@@ -32,10 +32,10 @@ const FilterBar = () => {
       }
     };
 
-    carouselRef.current.addEventListener("scroll", handleScroll);
+    carouselRef?.current?.addEventListener("scroll", handleScroll);
 
     return () => {
-      carouselRef.current.removeEventListener("scroll", handleScroll);
+      carouselRef?.current?.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
