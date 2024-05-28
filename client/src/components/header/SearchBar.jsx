@@ -2,10 +2,11 @@ import React from "react";
 
 const SearchBar = () => {
   return (
+    <>
     <form
       action="#"
       method="GET"
-      className="lg:pl-2 ">
+      className="lg:pl-2 max-sm:hidden">
       <label
         htmlFor="topbar-search"
         className="sr-only">
@@ -37,6 +38,8 @@ const SearchBar = () => {
         />
       </div>
     </form>
+
+    </>
   );
 };
 
