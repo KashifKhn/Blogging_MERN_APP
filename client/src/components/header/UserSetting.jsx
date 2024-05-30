@@ -42,26 +42,26 @@ const UserSetting = () => {
         className="py-1 text-gray-500 dark:text-gray-400"
         aria-labelledby="dropdown">
         <li>
-          <a
-            href="#"
+          <NavLink
+            to="/user"
             className="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
             My profile
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a
-            href="#"
+          <NavLink
+            to="/user/settings"
             className="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
             Account settings
-          </a>
+          </NavLink>
         </li>
       </ul>
       <ul
         className="py-1 text-gray-500 dark:text-gray-400"
         aria-labelledby="dropdown">
         <li>
-          <a
-            href="#"
+          <NavLink
+            to="/user/likes"
             className="flex items-center py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
             <svg
               className="mr-2 w-4 h-4 text-gray-400"
@@ -72,11 +72,11 @@ const UserSetting = () => {
               <path d="M17.947 2.053a5.209 5.209 0 0 0-3.793-1.53A6.414 6.414 0 0 0 10 2.311 6.482 6.482 0 0 0 5.824.5a5.2 5.2 0 0 0-3.8 1.521c-1.915 1.916-2.315 5.392.625 8.333l7 7a.5.5 0 0 0 .708 0l7-7a6.6 6.6 0 0 0 2.123-4.508 5.179 5.179 0 0 0-1.533-3.793Z" />
             </svg>
             My likes
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a
-            href="#"
+          <NavLink
+            to="/user/collections"
             className="flex items-center py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
             <svg
               className="mr-2 w-4 h-4 text-gray-400"
@@ -90,7 +90,7 @@ const UserSetting = () => {
               <path d="M17.993 13.191a1 1 0 0 0-1 1v.163l-7 3.435-7-3.435v-.163a1 1 0 1 0-2 0v.787a1 1 0 0 0 .56.9l8 3.925a1 1 0 0 0 .88 0l8-3.925a1 1 0 0 0 .56-.9v-.787a1 1 0 0 0-1-1Z" />{" "}
             </svg>
             Collections
-          </a>
+          </NavLink>
         </li>
       </ul>
       <ul
