@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import PersistentLogin from "./components/auth/PersistentLogin";
+import UserProfile from "./pages/UserProfile";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -62,6 +63,15 @@ const App = () => {
             </ProtectedRoute>
           ),
         },
+        {
+          path: "user/:id",
+          element: (
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          ),
+        },
+
         {
           path: "*",
           element: <Error />,
