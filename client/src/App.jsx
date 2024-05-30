@@ -15,6 +15,10 @@ import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import PersistentLogin from "./components/auth/PersistentLogin";
 import UserProfile from "./pages/UserProfile";
+import Setting from "./components/UserProfile/Setting/Setting";
+import Likes from "./components/UserProfile/Like/Likes";
+import Profile from "./components/UserProfile/Profile/Profile";
+import Collection from "./components/UserProfile/Collections/Collection";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -70,6 +74,40 @@ const App = () => {
               <UserProfile />
             </ProtectedRoute>
           ),
+          children: [
+            {
+              index: true,
+              element: (
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              ),
+            },
+            {
+              path: "collections",
+              element: (
+                <ProtectedRoute>
+                  <Collection />
+                </ProtectedRoute>
+              ),
+            },
+            {
+              path: "likes",
+              element: (
+                <ProtectedRoute>
+                  <Likes />
+                </ProtectedRoute>
+              ),
+            },
+            {
+              path: "settings",
+              element: (
+                <ProtectedRoute>
+                  <Setting />
+                </ProtectedRoute>
+              ),
+            },
+          ],
         },
 
         {
