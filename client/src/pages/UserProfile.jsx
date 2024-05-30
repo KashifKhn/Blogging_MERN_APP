@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import UserProfileLayouts from "../Layouts/UserProfileLayouts";
 
 const UserProfile = () => {
   return (
-    <div>UserProfile</div>
-  )
-}
+    <div>
+      <UserProfileLayouts />
+    </div>
+  );
+};
 
-export default UserProfile
+export default UserProfile;

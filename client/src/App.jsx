@@ -64,7 +64,7 @@ const App = () => {
           ),
         },
         {
-          path: "user/:id",
+          path: "user",
           element: (
             <ProtectedRoute>
               <UserProfile />
