@@ -7,7 +7,8 @@ const Header = () => {
       <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
         <li className="me-2">
           <NavLink
-            to="/"
+            end
+            to="."
             className={({ isActive }) =>
               `inline-flex items-center ${
                 isActive
@@ -28,7 +29,7 @@ const Header = () => {
         </li>
         <li className="me-2">
           <NavLink
-            to="/collections"
+            to="collections"
             className={({ isActive }) =>
               `inline-flex items-center ${
                 isActive
@@ -52,7 +53,7 @@ const Header = () => {
         </li>
         <li className="me-2">
           <NavLink
-            to="/likes"
+            to="likes"
             className={({ isActive }) =>
               `inline-flex items-center ${
                 isActive
@@ -73,7 +74,7 @@ const Header = () => {
         </li>
         <li className="me-2">
           <NavLink
-            to="/settings"
+            to="settings"
             className={({ isActive }) =>
               `inline-flex items-center ${
                 isActive
