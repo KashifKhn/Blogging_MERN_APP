@@ -20,10 +20,11 @@ This project is a simple blogging application built using the MERN (MongoDB, Exp
 - Mongoose
 - Axios
 - HTML/CSS
-- Tailwindcss and React Bootstrap
+- Tailwindcss
 - Markdown parser (e.g., marked)
 - HTML sanitizer (e.g., HTMLReactParser)
 - Rich text editor library (e.g., ReactQuill)
+- React Hook Form
 
 ## Installation
 
